@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nusantara Motors — Showroom mobil resmi terlengkap di Semarang. Katalog 15+ merk, harga OTR transparan, kredit bunga ringan, trade-in, garansi resmi 5 tahun. Data mobil live dari API resmi.">
+<meta name="keywords" content="showroom mobil, jual mobil, kredit mobil, tukar tambah, Toyota, Honda, Mitsubishi, Semarang, dealer resmi">
+<title>Nusantara Motors | Showroom & Dealer Mobil Resmi Terlengkap di Semarang</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23e10600'/%3E%3Ctext x='32' y='45' font-size='34' font-weight='900' text-anchor='middle' fill='white' font-family='Arial Black,Arial'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ============================================================
+   NUSANTARA MOTORS — Premium Car Showroom
+   Native HTML · CSS · JavaScript (tanpa framework JS)
+   ============================================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --font-body:'Inter',sans-serif;
+  --font-display:'Bebas Neue',sans-serif;
+  --font-mono:'Space Grotesk',sans-serif;
+  --red:#e10600;
+  --red-hi:#ff3524;
+  --red-deep:#b3000b;
+  --gold:#f5c34f;
+  --green:#22c55e;
+  --amber:#f59e0b;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --radius:18px;
+}
+[data-theme="dark"]{
+  --bg:#0b0e13;
+  --bg-soft:#0f131a;
+  --surface:#141a22;
+  --surface-2:#1b232e;
+  --surface-3:#242f3d;
+  --card-hover:#171e27;
+  --text:#edf1f6;
+  --muted:#8d98a8;
+  --border:#232c39;
+  --border-soft:#1c2430;
+  --shadow:0 26px 60px rgba(0,0,0,.55);
+  --shadow-sm:0 10px 28px rgba(0,0,0,.4);
+  --glass:rgba(255,255,255,.055);
+  --glass-border:rgba(255,255,255,.13);
+  --glass-text:#ffffff;
+  --grid-line:rgba(255,255,255,.035);
+  --watermark:rgba(255,255,255,.045);
+  --hero-glow:rgba(225,6,0,.32);
+  --overlay:rgba(4,6,10,.66);
+  --topbar:#080a0f;
+  --map-filter:invert(.92) hue-rotate(180deg) saturate(.35) brightness(.92) contrast(.92);
+}
+[data-theme="light"]{
+  --bg:#f4f3f0;
+  --bg-soft:#ebe9e5;
+  --surface:#ffffff;
+  --surface-2:#efede9;
+  --surface-3:#e3e0da;
+  --card-hover:#faf9f7;
+  --text:#161b22;
+  --muted:#5d6673;
+  --border:#e0ddd6;
+  --border-soft:#e7e4de;
+  --shadow:0 26px 60px rgba(23,27,34,.18);
+  --shadow-sm:0 10px 26px rgba(23,27,34,.12);
+  --glass:rgba(22,27,34,.055);
+  --glass-border:rgba(22,27,34,.16);
+  --glass-text:#161b22;
+  --grid-line:rgba(22,27,34,.05);
+  --watermark:rgba(22,27,34,.06);
+  --hero-glow:rgba(225,6,0,.16);
+  --overlay:rgba(30,33,40,.5);
+  --topbar:#10141b;
+  --map-filter:none;
+}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .4s,color .4s}
+body.locked{overflow:hidden}
+img{max-width:100%}
+button{font-family:var(--font-body)}
+::selection{background:var(--red);color:#fff}
+:focus-visible{outline:3px solid rgba(225,6,0,.55);outline-offset:2px;border-radius:4px}
+.container{width:min(1240px,100% - 40px);margin-inline:auto}
+
+/* ================= BUTTONS ================= */
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:.92rem;border:none;cursor:pointer;border-radius:14px;padding:13px 24px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s,border-color .3s,color .3s;text-decoration:none;white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,var(--red-hi),var(--red-deep));color:#fff;box-shadow:0 12px 30px rgba(225,6,0,.38)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(225,6,0,.48)}
+.btn-primary:active{transform:translateY(0) scale(.98)}
+.btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px)}
+.btn-glass{background:var(--glass);border:1px solid var(--glass-border);color:var(--glass-text);backdrop-filter:blur(8px)}
+.btn-glass:hover{transform:translateY(-2px);border-color:var(--red);color:var(--red-hi)}
+.btn-lg{padding:16px 30px;font-size:1rem;border-radius:16px}
+.btn-block{width:100%;justify-content:center}
+
+/* ================= SECTION HEADINGS ================= */
+.section{padding:88px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+.eyebrow::before{content:'';width:34px;height:2px;background:var(--red);display:inline-block}
+.section-title{font-family:var(--font-display);font-size:clamp(2.4rem,5vw,3.6rem);line-height:.98;letter-spacing:.01em;text-transform:uppercase}
+.section-sub{color:var(--muted);max-width:560px;margin-top:14px;font-size:.97rem}
+.head-center{text-align:center}
+.head-center .eyebrow{justify-content:center}
+.head-center .section-sub{margin-inline:auto}
+
+/* ================= TOPBAR ================= */
+.topbar{background:var(--topbar);color:#c8cdd5;font-size:.76rem;padding:8px 0;letter-spacing:.02em}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;gap:18px}
+.topbar-group{display:flex;gap:22px;align-items:center}
+.topbar-item{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:inherit;transition:color .25s}
+.topbar-item:hover{color:#fff}
+.topbar-item i{color:var(--red-hi);font-size:.72rem}
+.topbar-social{display:flex;gap:8px}
+.topbar-social a{width:28px;height:28px;border-radius:8px;border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;color:#c8cdd5;font-size:.72rem;transition:.25s;text-decoration:none}
+.topbar-social a:hover{background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-2px)}
+
+/* ================= NAVBAR ================= */
+.navbar{position:sticky;top:0;z-index:55;height:72px;display:flex;align-items:center;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:all .35s}
+.navbar.scrolled{border-bottom-color:var(--border-soft);box-shadow:0 10px 34px rgba(0,0,0,.28)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.logo-mark{width:46px;height:46px;border-radius:13px;background:linear-gradient(140deg,var(--red-hi),var(--red-deep));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;box-shadow:0 8px 22px rgba(225,6,0,.4);transition:transform .4s var(--ease)}
+.logo:hover .logo-mark{transform:rotate(-8deg) scale(1.06)}
+.logo-text{display:flex;flex-direction:column;line-height:1.05}
+.logo-text b{font-family:var(--font-display);font-size:1.32rem;letter-spacing:.06em;color:var(--text)}
+.logo-text b em{font-style:normal;color:var(--red)}
+.logo-text small{font-size:.56rem;letter-spacing:.32em;color:var(--muted);font-weight:600;margin-top:4px;text-transform:uppercase}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.87rem;font-weight:500;padding:9px 14px;border-radius:10px;transition:.25s}
+.nav-links a:hover{color:var(--red);background:var(--glass)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;width:44px;height:44px;border-radius:13px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;font-size:1.02rem;display:flex;align-items:center;justify-content:center;transition:.25s}
+.icon-btn:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px)}
+.icon-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+.badge{position:absolute;top:-7px;right:-7px;min-width:22px;height:22px;padding:0 6px;border-radius:99px;background:var(--red);color:#fff;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);font-family:var(--font-mono);transition:transform .3s}
+.badge.bump{animation:bump .45s var(--ease)}
+@keyframes bump{0%{transform:scale(.4)}45%{transform:scale(1.55)}100%{transform:scale(1)}}
+.nav-cta{display:inline-flex}
+.hamburger{display:none}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{position:fixed;top:72px;left:0;right:0;z-index:54;background:var(--surface);border-bottom:1px solid var(--border);padding:18px 22px 26px;transform:translateY(-16px);opacity:0;pointer-events:none;transition:.35s var(--ease);box-shadow:var(--shadow-sm)}
+.mobile-menu.open{transform:none;opacity:1;pointer-events:auto}
+.mobile-menu a{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:12px;color:var(--text);text-decoration:none;font-weight:600;font-size:.95rem;transition:.2s}
+.mobile-menu a:hover{background:var(--surface-2);color:var(--red)}
+.mobile-menu a i{color:var(--red);width:22px;text-align:center}
+
+/* ================= HERO ================= */
+.hero{position:relative;overflow:hidden;background:radial-gradient(1100px 620px at 78% 18%,var(--hero-glow),transparent 62%),var(--bg)}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 85% 80% at 60% 30%,black 35%,transparent 78%);mask-image:radial-gradient(ellipse 85% 80% at 60% 30%,black 35%,transparent 78%);pointer-events:none}
+.watermark{position:absolute;right:-14px;top:44px;font-family:var(--font-display);font-size:clamp(6rem,15vw,12rem);line-height:1;color:transparent;-webkit-text-stroke:1.4px var(--watermark);letter-spacing:.02em;pointer-events:none;user-select:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;padding:56px 0 44px;min-height:calc(92vh - 110px)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-size:.74rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.pulse-dot{width:9px;height:9px;border-radius:50%;background:var(--green);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+.hero-title{font-family:var(--font-display);font-size:clamp(3.4rem,7.2vw,5.6rem);line-height:.94;letter-spacing:.01em;text-transform:uppercase}
+.text-accent{background:linear-gradient(120deg,var(--red-hi) 10%,#ff7a45 55%,var(--red-hi) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gradientShift 5s ease infinite}
+@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.accent-dot{color:var(--red)}
+.hero-sub{margin:22px 0 30px;color:var(--muted);font-size:1.02rem;max-width:480px}
+.hero-sub b{color:var(--text)}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.hero-trust{display:flex;align-items:center;gap:16px;font-size:.8rem;color:var(--muted);line-height:1.5}
+.hero-trust b{color:var(--text)}
+.avatar-stack{display:flex}
+.avatar-stack img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2.5px solid var(--bg);margin-left:-11px}
+.avatar-stack img:first-child{margin-left:0}
+.stars{color:var(--gold);letter-spacing:2px;font-size:.72rem}
+
+.hero-visual{position:relative;display:flex;justify-content:center}
+.hero-card{position:relative;width:100%;max-width:520px;border-radius:26px;overflow:hidden;border:1px solid var(--glass-border);box-shadow:0 46px 90px rgba(0,0,0,.55);z-index:2;animation:heroFloat 6.5s ease-in-out infinite}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hero-card img{width:100%;aspect-ratio:4/3.4;object-fit:cover;display:block}
+.hero-card-overlay{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;padding:26px 22px 18px;background:linear-gradient(transparent,rgba(5,7,11,.9))}
+.hero-card-overlay small{display:block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.24em;color:var(--gold);margin-bottom:4px}
+.hero-card-overlay strong{display:block;color:#fff;font-size:1.05rem;letter-spacing:.02em}
+.hero-card-overlay span{color:#ffd9d5;font-family:var(--font-mono);font-weight:600;font-size:.9rem}
+.hero-card-btn{width:48px;height:48px;flex-shrink:0;border-radius:14px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:.3s}
+.hero-card-btn:hover{background:#fff;color:var(--red);transform:rotate(-45deg)}
+.float-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);border-radius:16px;padding:11px 16px;font-size:.78rem;font-weight:600;animation:chipFloat 5s ease-in-out infinite;backdrop-filter:blur(8px)}
+.float-chip i{color:var(--red);font-size:1rem}
+@keyframes chipFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.chip-1{top:6%;left:-8px;animation-delay:.6s}
+.chip-2{bottom:30%;right:-10px;animation-delay:1.8s}
+.chip-3{bottom:-14px;left:16%;animation-delay:1.1s;text-align:center;line-height:1.35}
+.chip-3 .chip-icon{width:34px;height:34px;border-radius:10px;background:#f5c34f22;display:flex;align-items:center;justify-content:center}
+.chip-3 .chip-icon i{color:var(--gold);font-size:.85rem}
+.chip-3 small{display:block;color:var(--muted);font-weight:500;font-size:.66rem}
+
+.stats-bar{position:relative;border-top:1px solid var(--border-soft);background:var(--bg-soft)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:26px 22px;text-align:center;border-left:1px solid var(--border-soft)}
+.stat:first-child{border-left:none}
+.stat strong{display:block;font-family:var(--font-display);font-size:2.1rem;letter-spacing:.03em;color:var(--text)}
+.stat strong em{font-style:normal;color:var(--red)}
+.stat span:last-child{font-size:.76rem;color:var(--muted);letter-spacing:.04em}
+
+/* ================= MARQUEE ================= */
+.marquee{overflow:hidden;border-bottom:1px solid var(--border-soft);background:var(--bg);padding:15px 0}
+.marquee-track{display:flex;gap:60px;width:max-content;animation:marquee 34s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.marquee-item{display:flex;align-items:center;gap:11px;font-family:var(--font-mono);font-weight:600;font-size:.86rem;letter-spacing:.24em;color:var(--muted);white-space:nowrap;transition:color .3s}
+.marquee-item:hover{color:var(--text)}
+.marquee-item i{color:var(--red);font-size:.8rem;opacity:.85}
+
+/* ================= CATALOG ================= */
+.catalog{background:var(--bg);position:relative}
+.catalog-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:26px;flex-wrap:wrap}
+.api-pill{display:inline-flex;align-items:center;gap:9px;padding:8px 15px;border-radius:99px;font-size:.72rem;font-weight:600;letter-spacing:.04em;border:1px solid var(--border);background:var(--surface);color:var(--muted)}
+.api-pill .dot{width:9px;height:9px;border-radius:50%;background:var(--muted);animation:pulse 1.4s infinite}
+.api-pill.live{border-color:rgba(34,197,94,.4);color:#34d399}
+.api-pill.live .dot{background:var(--green)}
+.api-pill.demo{border-color:rgba(245,158,11,.4);color:#fbbf24}
+.api-pill.demo .dot{background:var(--amber)}
+
+.toolbar{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:18px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;box-shadow:var(--shadow-sm);margin-bottom:14px}
+.search-box{position:relative;flex:1.6;min-width:230px}
+.search-box i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.9rem;pointer-events:none}
+.search-box input{width:100%;height:48px;border-radius:13px;border:1.5px solid var(--border);background:var(--surface-2);color:var(--text);padding:0 16px 0 44px;font-size:.92rem;transition:.3s;font-family:var(--font-body)}
+.search-box input::placeholder{color:var(--muted)}
+.search-box input:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 4px rgba(225,6,0,.14)}
+.select-wrap{position:relative}
+.select-wrap select{appearance:none;-webkit-appearance:none;height:48px;border-radius:13px;border:1.5px solid var(--border);background:var(--surface-2);color:var(--text);padding:0 42px 0 16px;font-size:.88rem;cursor:pointer;transition:.3s;font-family:var(--font-body);font-weight:500}
+.select-wrap select:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 4px rgba(225,6,0,.14)}
+.select-wrap::after{content:'\f078';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;right:15px;top:50%;transform:translateY(-50%);font-size:.68rem;color:var(--muted);pointer-events:none}
+.toolbar-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin:16px 4px 22px}
+.result-count{font-size:.85rem;color:var(--muted)}
+.result-count b{color:var(--text);font-family:var(--font-mono)}
+.toolbar-tools{display:flex;gap:10px;align-items:center}
+.chip-btn{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 16px;border-radius:99px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-size:.8rem;font-weight:600;cursor:pointer;transition:.25s}
+.chip-btn:hover{border-color:var(--red);color:var(--red)}
+.chip-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+
+.car-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:22px}
+.car-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s}
+.car-card:hover{transform:translateY(-7px);box-shadow:var(--shadow);border-color:var(--surface-3)}
+.car-media{position:relative;height:188px;overflow:hidden;background:var(--surface-2);cursor:pointer}
+.car-media img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.car-card:hover .car-media img{transform:scale(1.08)}
+.car-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(4,6,10,.55));pointer-events:none}
+.badge-brand{position:absolute;top:13px;left:13px;z-index:2;background:rgba(7,9,13,.62);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);color:#fff;font-family:var(--font-mono);font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:6px 11px;border-radius:8px}
+.badge-cond{position:absolute;bottom:12px;left:13px;z-index:2;background:var(--gold);color:#161616;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:6px}
+.badge-stock{position:absolute;bottom:12px;right:13px;z-index:2;background:rgba(7,9,13,.62);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);color:#c9d3e0;font-size:.6rem;font-weight:600;letter-spacing:.06em;padding:5px 9px;border-radius:6px}
+.wishlist-btn{position:absolute;top:12px;right:12px;z-index:2;width:38px;height:38px;border-radius:12px;border:1px solid rgba(255,255,255,.22);background:rgba(7,9,13,.55);backdrop-filter:blur(6px);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:.25s}
+.wishlist-btn:hover{transform:scale(1.16);color:#ffb3b3}
+.wishlist-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+.car-body{padding:15px 16px 15px;display:flex;flex-direction:column;gap:9px;flex:1}
+.car-name{font-family:var(--font-mono);font-weight:600;font-size:.99rem;line-height:1.32;min-height:2.64em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.car-specs{display:flex;flex-wrap:wrap;gap:5px 13px;color:var(--muted);font-size:.73rem}
+.car-specs span{display:inline-flex;align-items:center;gap:6px}
+.car-specs i{color:var(--red);font-size:.68rem}
+.price-block{border-top:1px dashed var(--border);padding-top:10px;margin-top:auto}
+.price-block small{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.price-value{font-family:var(--font-mono);font-weight:700;font-size:1.16rem;letter-spacing:-.01em;margin-top:2px}
+.install-row{display:flex;align-items:center;gap:7px;font-size:.72rem;color:var(--muted);margin-top:3px}
+.install-row b{color:var(--red);font-family:var(--font-mono)}
+.car-actions{display:flex;gap:9px;margin-top:8px}
+.car-actions .btn-outline{flex:1;justify-content:center;padding:12px 10px;font-size:.85rem}
+.add-cart-btn{width:48px;flex-shrink:0;border:none;border-radius:14px;cursor:pointer;background:linear-gradient(135deg,var(--red-hi),var(--red-deep));color:#fff;font-size:1rem;transition:.3s;box-shadow:0 8px 20px rgba(225,6,0,.35)}
+.add-cart-btn:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 12px 28px rgba(225,6,0,.5)}
+.add-cart-btn:active{transform:scale(.94)}
+
+/* skeleton */
+.skeleton{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border-soft);overflow:hidden}
+.sk-img{height:188px;background:linear-gradient(100deg,var(--surface-2) 25%,var(--surface-3) 45%,var(--surface-2) 65%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+.sk-line{height:14px;border-radius:6px;margin:12px 16px;background:linear-gradient(100deg,var(--surface-2) 25%,var(--surface-3) 45%,var(--surface-2) 65%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
+
+.empty-state{text-align:center;padding:64px 20px;background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius)}
+.empty-state i{font-size:3rem;color:var(--surface-3);margin-bottom:14px}
+.empty-state h3{font-family:var(--font-mono);margin-bottom:6px}
+.empty-state p{color:var(--muted);font-size:.9rem;margin-bottom:18px}
+
+.pagination{display:flex;gap:8px;justify-content:center;margin-top:34px}
+.pg-btn{min-width:46px;height:46px;padding:0 12px;border-radius:13px;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;font-weight:600;font-size:.88rem;font-family:var(--font-mono);transition:.25s;display:flex;align-items:center;justify-content:center}
+.pg-btn:hover:not(:disabled){border-color:var(--red);color:var(--red);transform:translateY(-2px)}
+.pg-btn.active{background:linear-gradient(135deg,var(--red-hi),var(--red-deep));border-color:transparent;color:#fff;box-shadow:0 8px 20px rgba(225,6,0,.4)}
+.pg-btn:disabled{opacity:.32;cursor:not-allowed}
+
+/* ================= SERVICES ================= */
+.services{background:var(--bg-soft);border-block:1px solid var(--border-soft)}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:44px 0 26px}
+.service-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:26px 22px;transition:transform .4s var(--ease),box-shadow .4s var(--ease);position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),transparent);opacity:0;transition:.4s}
+.service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm)}
+.service-card:hover::before{opacity:1}
+.service-icon{width:54px;height:54px;border-radius:15px;background:rgba(225,6,0,.12);display:flex;align-items:center;justify-content:center;color:var(--red);font-size:1.35rem;margin-bottom:16px;transition:.4s var(--ease)}
+.service-card:hover .service-icon{background:var(--red);color:#fff;transform:rotate(-6deg) scale(1.08)}
+.service-card h3{font-family:var(--font-mono);font-size:1.02rem;font-weight:600;margin-bottom:8px}
+.service-card p{font-size:.84rem;color:var(--muted);margin-bottom:14px}
+.service-link{font-size:.8rem;font-weight:700;color:var(--red);text-decoration:none;letter-spacing:.05em;display:inline-flex;gap:8px;align-items:center}
+.service-link i{transition:transform .3s}
+.service-link:hover i{transform:translateX(6px)}
+
+/* ================= SIMULATOR ================= */
+.simulator-card{display:grid;grid-template-columns:1.1fr .9fr;background:var(--surface);border:1px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.sim-left{padding:32px 34px}
+.sim-left h3{font-family:var(--font-display);font-size:1.9rem;letter-spacing:.03em;margin-bottom:4px}
+.sim-left>p{color:var(--muted);font-size:.86rem;margin-bottom:24px}
+.sim-group{margin-bottom:22px}
+.sim-label{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px}
+.sim-label span{font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.sim-label output{font-family:var(--font-mono);font-weight:700;font-size:.95rem;color:var(--text)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:linear-gradient(to right,var(--red) var(--fill,35%),var(--surface-3) var(--fill,35%));outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:6px solid var(--red);box-shadow:0 3px 12px rgba(0,0,0,.45);transition:transform .2s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:6px solid var(--red);box-shadow:0 3px 12px rgba(0,0,0,.45);cursor:pointer}
+.quick-picks{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.quick-pick{font-size:.72rem;font-weight:600;padding:7px 13px;border-radius:99px;border:1px solid var(--border);background:var(--surface-2);color:var(--muted);cursor:pointer;transition:.25s}
+.quick-pick:hover{border-color:var(--red);color:var(--red)}
+.tenor-group{display:flex;gap:8px;flex-wrap:wrap}
+.tenor-btn{flex:1;min-width:64px;height:44px;border-radius:12px;border:1.5px solid var(--border);background:var(--surface-2);color:var(--muted);font-family:var(--font-mono);font-weight:600;cursor:pointer;transition:.25s;font-size:.86rem}
+.tenor-btn:hover{border-color:var(--red);color:var(--red)}
+.tenor-btn.active{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 6px 18px rgba(225,6,0,.4)}
+.sim-right{background:var(--bg-soft);border-left:1px solid var(--border-soft);padding:30px 30px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative}
+.donut-wrap{position:relative;width:190px;height:190px;margin-bottom:6px}
+.donut{width:100%;height:100%}
+.donut circle{fill:none;stroke-width:17}
+.donut-bg{stroke:var(--surface-3)}
+.donut-seg{transition:stroke-dasharray .9s var(--ease),stroke-dashoffset .9s var(--ease)}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.donut-center small{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.donut-center b{font-family:var(--font-mono);font-size:1.02rem;color:var(--text);margin-top:3px}
+.sim-rows{width:100%;display:flex;flex-direction:column;gap:7px;margin-top:6px}
+.sim-row{display:flex;justify-content:space-between;align-items:center;font-size:.83rem;padding:9px 13px;background:var(--surface);border:1px solid var(--border-soft);border-radius:11px}
+.sim-row span{display:flex;align-items:center;gap:9px;color:var(--muted)}
+.sim-row b{font-family:var(--font-mono);font-size:.83rem}
+.legend-dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+.sim-total{width:100%;display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:12px;background:linear-gradient(135deg,rgba(225,6,0,.14),rgba(225,6,0,.05));border:1px solid rgba(225,6,0,.3);margin-top:2px}
+.sim-total span{font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.sim-total b{font-family:var(--font-mono);color:var(--red);font-size:.95rem}
+.sim-note{font-size:.64rem;color:var(--muted);margin-top:12px;text-align:center;line-height:1.5}
+
+/* ================= TESTIMONIALS ================= */
+.testimonials{background:var(--bg)}
+.t-wrap{max-width:900px;margin:44px auto 0;position:relative}
+.t-viewport{overflow:hidden;border-radius:var(--radius)}
+.t-track{display:flex;transition:transform .55s var(--ease)}
+.t-slide{min-width:100%;background:var(--surface);border:1px solid var(--border-soft);padding:36px 40px;border-radius:var(--radius)}
+.t-quote{color:var(--red);font-size:1.7rem;opacity:.9;margin-bottom:12px}
+.t-text{font-size:1.02rem;line-height:1.72;color:var(--text)}
+.t-foot{display:flex;align-items:center;gap:15px;margin-top:22px;border-top:1px solid var(--border-soft);padding-top:20px}
+.t-foot img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
+.t-foot b{display:block;font-size:.92rem}
+.t-foot small{color:var(--muted);font-size:.76rem}
+.t-stars{color:var(--gold);letter-spacing:3px;font-size:.8rem;margin-bottom:4px}
+.t-nav{display:flex;justify-content:center;align-items:center;gap:20px;margin-top:28px}
+.t-arrow{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;transition:.25s;display:flex;align-items:center;justify-content:center}
+.t-arrow:hover{border-color:var(--red);color:var(--red);transform:scale(1.1)}
+.t-dots{display:flex;gap:8px}
+.t-dot{width:9px;height:9px;border-radius:99px;border:none;background:var(--surface-3);cursor:pointer;transition:all .35s var(--ease)}
+.t-dot.active{width:30px;background:var(--red)}
+
+/* ================= FAQ ================= */
+.faq{background:var(--bg-soft);border-top:1px solid var(--border-soft)}
+.faq-inner{max-width:920px;margin:44px auto 0}
+.faq-item{background:var(--surface);border:1px solid var(--border-soft);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:border-color .3s}
+.faq-item.open{border-color:rgba(225,6,0,.4)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:18px;text-align:left;background:none;border:none;color:var(--text);font-size:.97rem;font-weight:600;padding:21px 24px;cursor:pointer}
+.faq-q i{color:var(--red);transition:transform .4s var(--ease);flex-shrink:0}
+.faq-item.open .faq-q i{transform:rotate(135deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+.faq-a p{padding:0 24px 20px;color:var(--muted);font-size:.9rem;line-height:1.75;border-top:1px dashed var(--border);padding-top:16px}
+
+/* ================= CONTACT ================= */
+.contact{background:var(--bg)}
+.contact-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:24px;margin-top:44px}
+.map-card{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);min-height:430px;box-shadow:var(--shadow-sm)}
+.map-card iframe{width:100%;height:100%;min-height:430px;border:0;filter:var(--map-filter)}
+.map-float{position:absolute;bottom:16px;left:16px;right:16px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px 17px;display:flex;gap:13px;align-items:center;box-shadow:var(--shadow-sm)}
+.map-float .mf-icon{width:46px;height:46px;border-radius:12px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.map-float b{font-size:.85rem;display:block}
+.map-float small{color:var(--muted);font-size:.73rem}
+.contact-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:6px}
+.contact-card h3{font-family:var(--font-mono);font-size:1.15rem;margin-bottom:6px}
+.contact-row{display:flex;gap:15px;align-items:flex-start;padding:14px 4px;border-bottom:1px solid var(--border-soft)}
+.contact-row:last-of-type{border-bottom:none}
+.cr-icon{width:44px;height:44px;border-radius:12px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;color:var(--red);flex-shrink:0}
+.contact-row small{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;display:block;margin-bottom:3px}
+.contact-row b{font-size:.92rem;font-weight:600}
+.contact-row a{color:inherit;text-decoration:none}
+.contact-row a:hover{color:var(--red)}
+.hours-table{width:100%;font-size:.83rem;border-collapse:collapse;margin-top:4px}
+.hours-table td{padding:6px 4px;border-bottom:1px dashed var(--border-soft);color:var(--muted)}
+.hours-table tr:last-child td{border-bottom:none}
+.hours-table td:last-child{text-align:right;color:var(--text);font-family:var(--font-mono);font-size:.8rem}
+.wa-cta{margin-top:14px;display:flex;align-items:center;justify-content:center;gap:12px;height:54px;border-radius:14px;background:#25d366;color:#062b13;font-weight:700;font-size:.95rem;text-decoration:none;transition:.3s;box-shadow:0 10px 26px rgba(37,211,102,.35)}
+.wa-cta:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(37,211,102,.45)}
+
+/* ================= NEWSLETTER BAND ================= */
+.newsletter{background:linear-gradient(120deg,#c3000a,#7a0006 70%,#4d0004);position:relative;overflow:hidden}
+.newsletter::after{content:'';position:absolute;width:420px;height:420px;border-radius:50%;border:70px solid rgba(255,255,255,.05);right:-120px;top:-140px}
+.nl-inner{position:relative;display:flex;justify-content:space-between;align-items:center;gap:30px;padding:38px 0;flex-wrap:wrap}
+.nl-inner h3{font-family:var(--font-display);font-size:1.8rem;color:#fff;letter-spacing:.03em}
+.nl-inner p{color:#ffd9d6;font-size:.86rem;margin-top:4px}
+.nl-form{display:flex;gap:10px;min-width:320px;flex:1;max-width:460px}
+.nl-form input{flex:1;height:52px;border-radius:13px;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.28);color:#fff;padding:0 18px;font-size:.92rem;font-family:var(--font-body)}
+.nl-form input::placeholder{color:#e7a49d}
+.nl-form input:focus{outline:none;border-color:#fff;background:rgba(0,0,0,.4)}
+.nl-form button{height:52px;padding:0 24px;border:none;border-radius:13px;background:#fff;color:var(--red-deep);font-weight:700;cursor:pointer;transition:.3s;display:flex;align-items:center;gap:9px}
+.nl-form button:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.4)}
+.nl-success{display:none;align-items:center;gap:12px;color:#fff;font-weight:600}
+
+/* ================= FOOTER ================= */
+.footer{background:var(--bg-soft);border-top:1px solid var(--border-soft)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.25fr;gap:44px;padding:60px 0 34px}
+.footer-grid p{color:var(--muted);font-size:.85rem;margin:14px 0 18px;max-width:300px}
+.footer-social{display:flex;gap:9px}
+.footer-social a{width:38px;height:38px;border-radius:11px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:.25s}
+.footer-social a:hover{background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-3px)}
+.f-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text);margin-bottom:15px;font-weight:700}
+.f-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.f-links a{color:var(--muted);text-decoration:none;font-size:.86rem;transition:.2s;display:inline-flex;align-items:center;gap:7px}
+.f-links a:hover{color:var(--red);transform:translateX(4px)}
+.f-contact li{display:flex;gap:11px;color:var(--muted);font-size:.85rem;margin-bottom:12px;align-items:flex-start}
+.f-contact i{color:var(--red);margin-top:3px}
+.footer-bottom{border-top:1px solid var(--border-soft);padding:19px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:.78rem;color:var(--muted)}
+.footer-bottom-links{display:flex;gap:18px}
+.footer-bottom-links a{color:var(--muted);text-decoration:none}
+.footer-bottom-links a:hover{color:var(--text)}
+.pay-chips{display:flex;gap:7px;flex-wrap:wrap}
+.pay-chip{border:1px solid var(--border);border-radius:7px;padding:4px 9px;font-family:var(--font-mono);font-size:.64rem;font-weight:600;letter-spacing:.05em;color:var(--muted)}
+
+/* ================= CART DRAWER ================= */
+.overlay{position:fixed;inset:0;z-index:60;background:var(--overlay);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .35s}
+.overlay.show{opacity:1;pointer-events:auto}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;z-index:65;width:min(440px,100vw);background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .45s var(--ease);box-shadow:-20px 0 60px rgba(0,0,0,.4)}
+.cart-drawer.open{transform:none}
+.cart-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--border-soft)}
+.cart-head h3{font-family:var(--font-display);font-size:1.5rem;letter-spacing:.04em}
+.cart-head h3 span{color:var(--red)}
+.cart-body{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+.cart-item{display:flex;gap:14px;background:var(--surface-2);border:1px solid var(--border-soft);border-radius:16px;padding:12px;animation:itemIn .4s var(--ease)}
+@keyframes itemIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+.cart-item img{width:112px;height:88px;object-fit:cover;border-radius:11px;flex-shrink:0;background:var(--surface-3)}
+.ci-info{flex:1;display:flex;flex-direction:column;gap:3px;min-width:0}
+.ci-info b{font-size:.85rem;line-height:1.35}
+.ci-price{font-family:var(--font-mono);color:var(--red);font-weight:700;font-size:.88rem}
+.ci-qty{display:flex;align-items:center;gap:0;margin-top:5px;border:1px solid var(--border);border-radius:9px;width:max-content;overflow:hidden}
+.ci-qty button{width:28px;height:28px;border:none;background:var(--surface);color:var(--text);cursor:pointer;font-size:.68rem;transition:.2s}
+.ci-qty button:hover{background:var(--red);color:#fff}
+.ci-qty span{width:36px;text-align:center;font-family:var(--font-mono);font-size:.82rem;font-weight:600}
+.ci-remove{align-self:flex-start;background:none;border:none;color:var(--muted);cursor:pointer;padding:8px;border-radius:9px;transition:.2s;font-size:.9rem}
+.ci-remove:hover{color:var(--red);background:rgba(225,6,0,.1)}
+.cart-empty{text-align:center;margin:auto;padding:40px 20px}
+.cart-empty i{font-size:3.4rem;color:var(--surface-3);margin-bottom:16px}
+.cart-empty h4{font-family:var(--font-mono);margin-bottom:6px}
+.cart-empty p{color:var(--muted);font-size:.86rem;margin-bottom:18px}
+.cart-foot{border-top:1px solid var(--border-soft);padding:18px 24px 22px;background:var(--bg-soft)}
+.sum-row{display:flex;justify-content:space-between;font-size:.84rem;color:var(--muted);margin-bottom:8px}
+.sum-row b{color:var(--text);font-family:var(--font-mono)}
+.sum-row .free{color:var(--green);font-weight:700;font-family:var(--font-mono);font-size:.8rem}
+.sum-total{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--border);padding-top:12px;margin:12px 0 14px}
+.sum-total span{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600}
+.sum-total b{font-family:var(--font-mono);font-size:1.3rem;color:var(--red)}
+
+/* ================= MODALS ================= */
+.modal{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;padding:22px;opacity:0;pointer-events:none;transition:opacity .3s;overflow-y:auto}
+.modal.open{opacity:1;pointer-events:auto}
+.modal-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;width:100%;max-height:93vh;overflow-y:auto;box-shadow:var(--shadow);transform:translateY(34px) scale(.96);transition:transform .4s var(--ease);position:relative}
+.modal.open .modal-card{transform:none}
+.modal-close{position:absolute;top:16px;right:16px;z-index:5;width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--muted);cursor:pointer;font-size:1rem;transition:.25s}
+.modal-close:hover{background:var(--red);border-color:var(--red);color:#fff;transform:rotate(90deg)}
+
+/* detail modal */
+.detail-modal-card{max-width:1020px}
+.detail-grid{display:grid;grid-template-columns:1fr 1.05fr;min-height:480px}
+.detail-media{position:relative;overflow:hidden;border-radius:24px 0 0 24px;min-height:340px;background:var(--surface-2)}
+.detail-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.detail-media::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,var(--surface))}
+.detail-media .badge-brand{top:20px;left:20px}
+.detail-info{padding:30px 32px 26px}
+.detail-brand{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--red);font-weight:700}
+.detail-info h2{font-family:var(--font-mono);font-size:1.55rem;font-weight:700;line-height:1.25;margin:8px 0 8px}
+.d-rating{display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--muted);margin-bottom:16px}
+.d-price-box{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:16px;padding:15px 18px;margin-bottom:18px}
+.d-price-box small{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.d-price-box strong{display:block;font-family:var(--font-mono);font-size:1.65rem;letter-spacing:-.01em;margin:3px 0}
+.d-price-box span{font-size:.76rem;color:var(--muted)}
+.d-price-box span b{color:var(--red);font-family:var(--font-mono)}
+.d-spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:16px}
+.spec-tile{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:12px;padding:10px 12px;display:flex;gap:9px;align-items:center}
+.spec-tile i{color:var(--red);font-size:.95rem;width:20px;text-align:center}
+.spec-tile small{display:block;font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.spec-tile b{font-size:.78rem;font-family:var(--font-mono)}
+.d-desc{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:18px}
+.d-actions{display:flex;gap:11px;align-items:stretch}
+.qty-stepper{display:flex;border:1.5px solid var(--border);border-radius:13px;overflow:hidden}
+.qty-stepper button{width:42px;border:none;background:var(--surface-2);color:var(--text);cursor:pointer;transition:.2s;font-size:.8rem}
+.qty-stepper button:hover{background:var(--red);color:#fff}
+.qty-stepper input{width:48px;border:none;background:var(--surface);color:var(--text);text-align:center;font-family:var(--font-mono);font-weight:700;font-size:.95rem}
+.qty-stepper input:focus{outline:none}
+.d-trust{display:flex;gap:16px;margin-top:16px;flex-wrap:wrap}
+.d-trust span{display:flex;align-items:center;gap:7px;font-size:.72rem;color:var(--muted)}
+.d-trust i{color:var(--green)}
+
+/* checkout modal */
+.checkout-card{max-width:580px}
+.co-head{padding:26px 30px 0}
+.co-head h3{font-family:var(--font-display);font-size:1.9rem;letter-spacing:.04em}
+.co-head p{color:var(--muted);font-size:.84rem;margin-top:4px}
+.co-body{padding:20px 30px 28px}
+.form-field{margin-bottom:14px}
+.form-field label{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:7px}
+.form-field input,.form-field textarea,.form-field select{width:100%;border:1.5px solid var(--border);background:var(--surface-2);color:var(--text);border-radius:12px;padding:13px 15px;font-size:.92rem;font-family:var(--font-body);transition:.25s;resize:vertical}
+.form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 4px rgba(225,6,0,.13)}
+.form-field .invalid{border-color:var(--red);box-shadow:0 0 0 4px rgba(225,6,0,.16)}
+.field-error{display:none;font-size:.7rem;color:#ff6d63;margin-top:5px;font-weight:500}
+.form-field.has-error .field-error{display:block}
+.form-field.has-error input,.form-field.has-error textarea{border-color:var(--red)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pay-options{display:flex;flex-direction:column;gap:9px;margin-bottom:14px}
+.pay-option input{position:absolute;opacity:0;pointer-events:none}
+.pay-card{display:flex;align-items:center;gap:13px;border:1.5px solid var(--border);border-radius:14px;padding:12px 15px;cursor:pointer;transition:.25s;background:var(--surface-2)}
+.pay-card>i:first-child{color:var(--red);font-size:1.2rem;width:26px;text-align:center}
+.pay-card div b{font-size:.87rem;display:block}
+.pay-card div small{color:var(--muted);font-size:.7rem}
+.pay-check{margin-left:auto;color:var(--surface-3);font-size:1.15rem;transition:.25s}
+.pay-option input:checked + .pay-card{border-color:var(--red);background:rgba(225,6,0,.09);box-shadow:0 0 0 3px rgba(225,6,0,.14)}
+.pay-option input:checked + .pay-card .pay-check{color:var(--red)}
+.co-summary{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:14px;padding:13px 16px;margin-bottom:16px;font-size:.8rem;max-height:150px;overflow-y:auto}
+.co-sum-row{display:flex;justify-content:space-between;gap:12px;padding:4px 0;color:var(--muted)}
+.co-sum-row b{color:var(--text);font-family:var(--font-mono)}
+.co-sum-total{display:flex;justify-content:space-between;border-top:1px dashed var(--border);padding-top:9px;margin-top:8px;font-weight:700}
+.co-sum-total b{color:var(--red);font-family:var(--font-mono)}
+.co-submit{height:54px;font-size:.97rem}
+.btn-spinner{display:none;width:19px;height:19px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .75s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.co-submit.loading .btn-spinner{display:inline-block}
+.co-submit.loading .btn-label-icon{display:none}
+
+/* success view */
+.success-view{display:none;text-align:center;padding:46px 34px 38px}
+.success-view.show{display:block}
+.success-check{width:104px;height:104px;margin:0 auto 20px}
+.checkmark-circle{stroke:var(--green);stroke-width:5;fill:rgba(34,197,94,.08);stroke-dasharray:300;stroke-dashoffset:300;animation:draw .8s .1s forwards var(--ease)}
+.checkmark-check{stroke:var(--green);stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:90;stroke-dashoffset:90;animation:draw .55s .75s forwards var(--ease)}
+@keyframes draw{to{stroke-dashoffset:0}}
+.success-view h3{font-family:var(--font-display);font-size:2rem;letter-spacing:.04em;margin-bottom:8px}
+.success-view>p{color:var(--muted);font-size:.88rem;max-width:400px;margin:0 auto 18px}
+.order-code{display:inline-flex;align-items:center;gap:14px;border:1.5px dashed var(--border);background:var(--surface-2);border-radius:13px;padding:13px 20px;margin-bottom:22px}
+.order-code b{font-family:var(--font-mono);font-size:1.1rem;letter-spacing:.14em;color:var(--gold)}
+.copy-btn{background:var(--surface-3);border:none;color:var(--text);width:38px;height:38px;border-radius:9px;cursor:pointer;transition:.25s}
+.copy-btn:hover{background:var(--red);color:#fff}
+
+/* ================= TOAST / FLOATS ================= */
+.toast-wrap{position:fixed;bottom:26px;left:26px;z-index:80;display:flex;flex-direction:column;gap:10px}
+.toast{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:13px;padding:13px 18px;box-shadow:var(--shadow-sm);font-size:.85rem;font-weight:500;max-width:340px;transform:translateX(-120%);opacity:0;transition:.4s var(--ease)}
+.toast.show{transform:none;opacity:1}
+.toast i{color:var(--green);font-size:1.05rem}
+.toast.info{border-left-color:#3b82f6}.toast.info i{color:#3b82f6}
+.toast.warning{border-left-color:var(--amber)}.toast.warning i{color:var(--amber)}
+
+.wa-float{position:fixed;bottom:26px;right:24px;z-index:52;width:62px;height:62px;border-radius:50%;background:#25d366;color:#062b13;display:flex;align-items:center;justify-content:center;font-size:1.75rem;text-decoration:none;box-shadow:0 12px 32px rgba(37,211,102,.45);transition:.3s}
+.wa-float::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:waRing 2.2s ease-out infinite}
+@keyframes waRing{0%{transform:scale(1);opacity:.9}80%,100%{transform:scale(1.65);opacity:0}}
+.wa-float:hover{transform:scale(1.12)}
+.back-top{position:fixed;bottom:104px;right:29px;z-index:52;width:52px;height:52px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;font-size:1rem;opacity:0;pointer-events:none;transition:.35s;box-shadow:var(--shadow-sm)}
+.back-top.show{opacity:1;pointer-events:auto}
+.back-top:hover{border-color:var(--red);color:var(--red);transform:translateY(-4px)}
+
+#confettiCanvas{position:fixed;inset:0;z-index:100;pointer-events:none}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1120px){
+  .chip-1{left:-4px}.chip-2{right:-4px}
+  .nav-cta{display:none}
+}
+@media(max-width:992px){
+  .topbar{display:none}
+  .navbar{height:66px}
+  .mobile-menu{top:66px}
+  .nav-links{display:none}
+  .hamburger{display:flex;width:44px;height:44px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;align-items:center;justify-content:center;font-size:1.05rem}
+  .hero-grid{grid-template-columns:1fr;min-height:auto;padding:40px 0 38px;gap:44px}
+  .hero-visual{order:-1}
+  .hero-card{max-width:440px}
+  .watermark{display:none}
+  .hero-title{font-size:clamp(3rem,13vw,4.4rem)}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .simulator-card{grid-template-columns:1fr}
+  .sim-right{border-left:none;border-top:1px solid var(--border-soft)}
+  .contact-grid{grid-template-columns:1fr}
+  .detail-grid{grid-template-columns:1fr}
+  .detail-media{border-radius:24px 24px 0 0;min-height:260px;max-height:300px;position:relative}
+  .detail-media::after{background:linear-gradient(180deg,transparent 55%,var(--surface))}
+  .footer-grid{grid-template-columns:repeat(2,1fr);gap:36px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:none;border-top:1px solid var(--border-soft)}
+  .stat:nth-child(4){border-top:1px solid var(--border-soft)}
+}
+@media(max-width:640px){
+  html{scroll-padding-top:76px}
+  .logo-text small{display:none}
+  .nav-actions .icon-btn:not(#cartBtnNav):not(#themeToggle){display:none}
+  .hero-ctas .btn{flex:1;justify-content:center}
+  .d-spec-grid{grid-template-columns:repeat(2,1fr)}
+  .d-actions{flex-direction:column}
+  .qty-stepper{justify-content:center}
+  .form-row{grid-template-columns:1fr}
+  .car-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .car-media{height:132px}
+  .car-name{font-size:.82rem;min-height:3.2em}
+  .car-specs{display:none}
+  .price-value{font-size:.92rem}
+  .car-actions .btn-outline{font-size:.74rem;padding:10px 6px}
+  .install-row{display:none}
+  .badge-cond{display:none}
+  .toolbar{padding:13px}
+  .footer-grid{grid-template-columns:1fr;gap:28px;padding:44px 0 26px}
+  .nl-form{min-width:100%}
+  .chip-3{display:none}
+  .section{padding:64px 0}
+  .t-slide{padding:26px 22px}
+  .toast-wrap{left:14px;right:14px}
+  .toast{max-width:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ TOPBAR ══════════ -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-group">
+      <span class="topbar-item"><i class="fa-solid fa-location-dot"></i> Jl. Imam Bonjol, Semarang</span>
+      <span class="topbar-item"><i class="fa-regular fa-clock"></i> Senin–Sabtu 08.00–17.00 · Minggu 09.00–14.00</span>
+    </div>
+    <div class="topbar-group">
+      <a class="topbar-item" href="tel:+6285134531849"><i class="fa-solid fa-phone-volume"></i> 0851-3453-1849</a>
+      <a class="topbar-item" href="mailto:gaharu0473@gmail.com"><i class="fa-solid fa-envelope"></i> gaharu0473@gmail.com</a>
+      <div class="topbar-social">
+        <a href="https://instagram.com/adi7_ya_ " target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://github.com/ditt-maulana" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://tiktok.com/@adtzen" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<header class="navbar" id="navbar">
+  <div class="container">
+    <a class="logo" href="#beranda" aria-label="Nusantara Motors — Beranda">
+      <span class="logo-mark"><i class="fa-solid fa-car-side"></i></span>
+      <span class="logo-text"><b>NUSANTARA<em>MOTORS</em></b><small>Official Showroom Dealer</small></span>
+    </a>
+    <nav aria-label="Navigasi utama">
+      <ul class="nav-links">
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#katalog">Katalog</a></li>
+        <li><a href="#simulasi">Simulasi Kredit</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="wishNavBtn" aria-label="Lihat wishlist" title="Wishlist saya">
+        <i class="fa-regular fa-heart"></i>
+        <span class="badge" id="wishBadge">0</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang" title="Ganti tema">
+        <i class="fa-solid fa-sun" id="themeIcon"></i>
+      </button>
+      <button class="icon-btn" id="cartBtnNav" aria-label="Buka keranjang" title="Keranjang">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="badge" id="cartBadge">0</span>
+      </button>
+      <a class="btn btn-primary nav-cta" href="https://wa.me/6285134531849?text=Halo%20Sales%20Nusantara%20Motors%2C%20saya%20ingin%20bertanya%20tentang%20unit%20mobil." target="_blank" rel="noopener"><i class="fa-solid fa-headset"></i> Hubungi Sales</a>
+      <button class="hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false"><i class="fa-solid fa-bars" id="hamburgerIcon"></i></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#beranda"><i class="fa-solid fa-house"></i> Beranda</a>
+  <a href="#katalog"><i class="fa-solid fa-car"></i> Katalog Mobil</a>
+  <a href="#simulasi"><i class="fa-solid fa-calculator"></i> Simulasi Kredit</a>
+  <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+  <a href="#kontak"><i class="fa-solid fa-location-dot"></i> Kontak & Lokasi</a>
+</div>
+
+<main>
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="beranda">
+  <span class="watermark" aria-hidden="true">MOTORS</span>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="hero-eyebrow"><span class="pulse-dot"></span> Showroom Resmi · Semarang</span>
+      <h1 class="hero-title">Temukan<br>Mobil <span class="text-accent">Impian</span><br>Anda<span class="accent-dot">.</span></h1>
+      <p class="hero-sub">Stok lebih dari <b>1.200 unit</b> dari <b>15+ merk resmi</b>, harga <b>OTR transparan</b>, kredit acc 1 hari kerja, dan garansi resmi hingga 5 tahun — semua dalam satu atap.</p>
+      <div class="hero-ctas">
+        <a href="#katalog" class="btn btn-primary btn-lg">Jelajah Katalog <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#simulasi" class="btn btn-glass btn-lg"><i class="fa-solid fa-calculator"></i> Simulasi Kredit</a>
+      </div>
+      <div class="hero-trust">
+        <div class="avatar-stack">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Pelanggan" onerror="this.onerror=null;this.src='https://i.pravatar.cc/88?img=12'">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Pelanggan" onerror="this.onerror=null;this.src='https://i.pravatar.cc/88?img=47'">
+          <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Pelanggan" onerror="this.onerror=null;this.src='https://i.pravatar.cc/88?img=59'">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Pelanggan" onerror="this.onerror=null;this.src='https://i.pravatar.cc/88?img=45'">
+          <img src="https://randomuser.me/api/portraits/men/17.jpg" alt="Pelanggan" onerror="this.onerror=null;this.src='https://i.pravatar.cc/88?img=8'">
+        </div>
+        <div><b>12.400+</b> pemilik puas berkendara<br><span class="stars">★★★★★</span> 4.9/5 · 2.340 ulasan Google</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-chip chip-1"><i class="fa-solid fa-shield-halved"></i> Garansi Resmi 5 Tahun</div>
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1400&q=85" alt="BMW M4 Competition — unit unggulan Nusantara Motors" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b2e?auto=format&fit=crop&w=1400&q=85'">
+        <div class="hero-card-overlay">
+          <div><small>UNIT UNGGULAN</small><strong>BMW M4 Competition</strong><span>Rp 2.499.000.000</span></div>
+          <a class="hero-card-btn" href="#katalog" aria-label="Lihat katalog"><i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="float-chip chip-2"><i class="fa-solid fa-percent"></i> Diskon s/d 12% Bulan Ini</div>
+      <div class="float-chip chip-3"><span class="chip-icon"><i class="fa-solid fa-star"></i></span><span><b>4.9 / 5.0</b><small>2.340 ulasan terverifikasi</small></span></div>
+    </div>
+  </div>
+  <div class="stats-bar">
+    <div class="container stats-grid">
+      <div class="stat"><strong><span class="stat-num" data-target="25">0</span><em>+</em></strong><span>Tahun Pengalaman</span></div>
+      <div class="stat"><strong><span class="stat-num" data-target="12400" data-format="id">0</span><em>+</em></strong><span>Unit Mobil Terjual</span></div>
+      <div class="stat"><strong><span class="stat-num" data-target="98">0</span><em>%</em></strong><span>Kepuasan Pelanggan</span></div>
+      <div class="stat"><strong><span class="stat-num" data-target="15">0</span><em>+</em></strong><span>Merk &amp; Authorized Dealer</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ BRAND MARQUEE ══════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>TOYOTA</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>HONDA</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>MITSUBISHI</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>SUZUKI</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>DAIHATSU</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>HYUNDAI</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>WULING</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>MAZDA</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>NISSAN</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>ISUZU</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>TOYOTA</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>HONDA</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>MITSUBISHI</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>SUZUKI</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>DAIHATSU</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>HYUNDAI</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>WULING</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>MAZDA</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>NISSAN</span>
+    <span class="marquee-item"><i class="fa-solid fa-car"></i>ISUZU</span>
+  </div>
+</div>
+
+<!-- ══════════ KATALOG ══════════ -->
+<section class="section catalog" id="katalog">
+  <div class="container">
+    <div class="catalog-head">
+      <div>
+        <span class="eyebrow">Katalog Live</span>
+        <h2 class="section-title">Pilihan <span style="color:var(--red)">Mobil</span><br>Terlengkap</h2>
+      </div>
+      <span class="api-pill" id="apiPill"><span class="dot"></span><span id="apiPillText">Menghubungkan ke API…</span></span>
+    </div>
+
+    <div class="toolbar" role="search">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Cari merk atau model mobil… (misal: Avanza, Fortuner)" aria-label="Cari mobil">
+      </div>
+      <div class="select-wrap"><select id="brandFilter" aria-label="Filter merk"><option value="">Semua Merk</option></select></div>
+      <div class="select-wrap"><select id="typeFilter" aria-label="Filter tipe"><option value="">Semua Tipe</option></select></div>
+      <div class="select-wrap"><select id="transFilter" aria-label="Filter transmisi"><option value="">Semua Transmisi</option></select></div>
+      <div class="select-wrap"><select id="sortFilter" aria-label="Urutkan">
+        <option value="popular">Urutkan: Terpopuler</option>
+        <option value="price-asc">Harga: Terendah → Tertinggi</option>
+        <option value="price-desc">Harga: Tertinggi → Terendah</option>
+        <option value="year">Tahun Terbaru</option>
+        <option value="name">Nama A → Z</option>
+      </select></div>
+    </div>
+    <div class="toolbar-foot">
+      <span class="result-count" id="resultCount">Memuat katalog…</span>
+      <div class="toolbar-tools">
+        <button class="chip-btn" id="wishOnlyBtn" aria-pressed="false"><i class="fa-regular fa-heart"></i> Wishlist Saya</button>
+        <button class="chip-btn" id="resetFiltersBtn"><i class="fa-solid fa-rotate-left"></i> Reset Filter</button>
+      </div>
+    </div>
+
+    <div class="car-grid" id="carGrid" aria-live="polite"></div>
+    <div class="empty-state" id="emptyState" style="display:none">
+      <i class="fa-solid fa-magnifying-glass-chart"></i>
+      <h3>Tidak Ada Mobil Ditemukan</h3>
+      <p>Coba ubah kata pencarian atau hapus beberapa filter yang aktif.</p>
+      <button class="btn btn-primary" id="emptyResetBtn"><i class="fa-solid fa-rotate-left"></i> Tampilkan Semua Mobil</button>
+    </div>
+    <div class="pagination" id="pagination" aria-label="Navigasi halaman"></div>
+  </div>
+</section>
+
+<!-- ══════════ SERVICES + SIMULATOR ══════════ -->
+<section class="section services" id="simulasi">
+  <div class="container">
+    <div class="head-center">
+      <span class="eyebrow">Layanan Kami</span>
+      <h2 class="section-title">Lebih dari Sekadar<br><span style="color:var(--red)">Jual Beli Mobil</span></h2>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+        <h3>Kredit &amp; Leasing</h3>
+        <p>DP mulai 10%, bunga flat 4.9% per tahun, proses approval hanya 1 hari kerja bekerja sama dengan 12 leasing terpercaya.</p>
+        <a class="service-link" href="#simulasiKredit">Hitung Cicilan <i class="fa-solid fa-arrow-right"></i></a>
+      </article>
+      <article class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+        <h3>Trade-In</h3>
+        <p>Mobil lama Anda kami terima sebagai uang muka. Estimasi harga fair, transparan, dan langsung cair saat akad.</p>
+        <a class="service-link" href="#kontak">Konsultasi Trade-In <i class="fa-solid fa-arrow-right"></i></a>
+      </article>
+      <article class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Garansi Resmi</h3>
+        <p>Garansi mesin &amp; transmisi hingga 5 tahun, ditambah free servis berkala 3x dan towing darurat 24 jam.</p>
+        <a class="service-link" href="#faq">Pelajari Garansi <i class="fa-solid fa-arrow-right"></i></a>
+      </article>
+      <article class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3>Servis &amp; Sparepart</h3>
+        <p>Bengkel resmi dengan mekanik bersertifikat pabrikan. Sparepart 100% original dengan harga khusus pelanggan.</p>
+        <a class="service-link" href="#kontak">Booking Servis <i class="fa-solid fa-arrow-right"></i></a>
+      </article>
+    </div>
+
+    <!-- Kredit Simulator -->
+    <div class="simulator-card" id="simulasiKredit">
+      <div class="sim-left">
+        <h3>Simulasi <span style="color:var(--red)">Kredit</span></h3>
+        <p>Geser slider dan lihat estimasi cicilan bulanan Anda secara langsung. Gratis, tanpa perlu registrasi.</p>
+        <div class="sim-group">
+          <div class="sim-label"><span>Harga Mobil</span><output id="simPriceLabel">Rp 350.000.000</output></div>
+          <input type="range" id="simPrice" min="100" max="1500" step="25" value="350" aria-label="Harga mobil dalam juta rupiah">
+          <div class="quick-picks">
+            <button class="quick-pick" data-price="235">Avanza · 235 jt</button>
+            <button class="quick-pick" data-price="395">HR-V · 395 jt</button>
+            <button class="quick-pick" data-price="700">Fortuner · 700 jt</button>
+            <button class="quick-pick" data-price="1500">Alphard · 1,5 M</button>
+          </div>
+        </div>
+        <div class="sim-group">
+          <div class="sim-label"><span>Uang Muka (DP)</span><output id="simDpLabel">25% — Rp 87.500.000</output></div>
+          <input type="range" id="simDp" min="10" max="50" step="5" value="25" aria-label="Persentase uang muka">
+        </div>
+        <div class="sim-group" style="margin-bottom:0">
+          <div class="sim-label"><span>Tenor</span><output id="simTenorLabel">36 Bulan</output></div>
+          <div class="tenor-group" id="tenorGroup">
+            <button class="tenor-btn" data-tenor="12">12</button>
+            <button class="tenor-btn" data-tenor="24">24</button>
+            <button class="tenor-btn active" data-tenor="36">36</button>
+            <button class="tenor-btn" data-tenor="48">48</button>
+            <button class="tenor-btn" data-tenor="60">60</button>
+          </div>
+        </div>
+      </div>
+      <div class="sim-right">
+        <div class="donut-wrap" role="img" aria-label="Grafik komposisi pembayaran kredit">
+          <svg class="donut" viewBox="0 0 150 150">
+            <defs>
+              <linearGradient id="redGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff3524"/><stop offset="1" stop-color="#b3000b"/>
+              </linearGradient>
+            </defs>
+            <g transform="rotate(-90 75 75)">
+              <circle class="donut-bg" cx="75" cy="75" r="56"></circle>
+              <circle class="donut-seg" id="segDp" cx="75" cy="75" r="56" stroke="#f5c34f" stroke-dasharray="0 351.86" stroke-dashoffset="0"></circle>
+              <circle class="donut-seg" id="segPokok" cx="75" cy="75" r="56" stroke="url(#redGrad)" stroke-dasharray="0 351.86" stroke-dashoffset="0"></circle>
+              <circle class="donut-seg" id="segBunga" cx="75" cy="75" r="56" stroke="#3b82f6" stroke-dasharray="0 351.86" stroke-dashoffset="0"></circle>
+            </g>
+          </svg>
+          <div class="donut-center"><small>Cicilan / Bulan</small><b id="simCicilanCenter">Rp 0</b></div>
+        </div>
+        <div class="sim-rows">
+          <div class="sim-row"><span><i class="legend-dot" style="background:#f5c34f"></i>Uang Muka (DP)</span><b id="simDpVal">Rp 0</b></div>
+          <div class="sim-row"><span><i class="legend-dot" style="background:var(--red)"></i>Pokok Utang</span><b id="simPokokVal">Rp 0</b></div>
+          <div class="sim-row"><span><i class="legend-dot" style="background:#3b82f6"></i>Total Bunga (5% flat/thn)</span><b id="simBungaVal">Rp 0</b></div>
+        </div>
+        <div class="sim-total"><span>Total Pembayaran</span><b id="simTotalVal">Rp 0</b></div>
+        <p class="sim-note">*Estimasi dengan bunga flat 5% per tahun. Belum termasuk asuransi, provisi &amp; biaya administrasi.<br>Persetujuan akhir mengikuti hasil survey leasing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section class="section testimonials">
+  <div class="container">
+    <div class="head-center">
+      <span class="eyebrow">Testimoni</span>
+      <h2 class="section-title">Kata Mereka yang<br><span style="color:var(--red)">Sudah Berkendara</span></h2>
+    </div>
+    <div class="t-wrap">
+      <div class="t-viewport" id="tViewport">
+        <div class="t-track" id="tTrack"></div>
+      </div>
+      <div class="t-nav">
+        <button class="t-arrow" id="tPrev" aria-label="Testimoni sebelumnya"><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="t-dots" id="tDots"></div>
+        <button class="t-arrow" id="tNext" aria-label="Testimoni selanjutnya"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="head-center">
+      <span class="eyebrow">Tanya Jawab</span>
+      <h2 class="section-title">Pertanyaan yang<br><span style="color:var(--red)">Sering Diajukan</span></h2>
+    </div>
+    <div class="faq-inner" id="faqAccordion"></div>
+  </div>
+</section>
+
+<!-- ══════════ KONTAK / LOKASI ══════════ -->
+<section class="section contact" id="kontak">
+  <div class="container">
+    <span class="eyebrow">Kunjungi Kami</span>
+    <h2 class="section-title">Lihat Langsung,<br><span style="color:var(--red)">Rasakan Sendiri</span></h2>
+    <div class="contact-grid">
+      <div class="map-card">
+        <iframe title="Lokasi Nusantara Motors di Google Maps" src="https://www.google.com/maps?q=Jl.%20Imam%20Bonjol%20Semarang&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-float">
+          <span class="mf-icon"><i class="fa-solid fa-location-dot"></i></span>
+          <span><b>Nusantara Motors — Flagship Showroom</b><small>Jl. Imam Bonjol, Semarang, Jawa Tengah 50134</small></span>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Hubungi <span style="color:var(--red)">Sales Kami</span></h3>
+        <div class="contact-row">
+          <span class="cr-icon"><i class="fa-solid fa-phone-volume"></i></span>
+          <span><small>Telepon &amp; WhatsApp</small><b><a href="tel:+6285134531849">0851-3453-1849</a></b></span>
+        </div>
+        <div class="contact-row">
+          <span class="cr-icon"><i class="fa-solid fa-envelope"></i></span>
+          <span><small>Email</small><b><a href="mailto:gaharu0473@gmail.com">gaharu0473@gmail.com</a></b></span>
+        </div>
+        <div class="contact-row" style="flex-direction:column;gap:10px">
+          <span style="display:flex;gap:15px;align-items:center"><span class="cr-icon"><i class="fa-regular fa-clock"></i></span><small style="margin:0">Jam Operasional</small></span>
+          <table class="hours-table">
+            <tr><td>Senin — Sabtu</td><td>08.00 – 17.00 WIB</td></tr>
+            <tr><td>Minggu &amp; Hari Libur</td><td>09.00 – 14.00 WIB</td></tr>
+            <tr><td>Test Drive</td><td>Setiap hari, wajib booking</td></tr>
+          </table>
+        </div>
+        <a class="wa-cta" href="https://wa.me/6285134531849?text=Halo%20Sales%20Nusantara%20Motors%2C%20saya%20ingin%20test%20drive." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="font-size:1.4rem"></i> Chat Langsung via WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ NEWSLETTER ══════════ -->
+<div class="newsletter">
+  <div class="container nl-inner">
+    <div>
+      <h3>PROMO EKSKLUSIF DI INBOX ANDA</h3>
+      <p>Info diskon, DP 0%, dan unit indent terbaru — langsung dari showroom, 2x sebulan.</p>
+    </div>
+    <form class="nl-form" id="newsletterForm" novalidate>
+      <input type="email" id="nlEmail" placeholder="namaanda@email.com" required aria-label="Alamat email">
+      <button type="submit">Berlangganan <i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+    <div class="nl-success" id="nlSuccess"><i class="fa-solid fa-circle-check" style="font-size:1.5rem"></i> Selamat! Email Anda berhasil terdaftar.</div>
+  </div>
+</div>
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="#beranda" style="text-decoration:none">
+          <span class="logo-mark"><i class="fa-solid fa-car-side"></i></span>
+          <span class="logo-text"><b style="font-size:1.15rem">NUSANTARA<em>MOTORS</em></b><small>Official Showroom Dealer</small></span>
+        </a>
+        <p>Dealer resmi 15+ merk selama 25 tahun. Melayani penjualan unit baru, tukar tambah, kredit, servis berkala, dan sparepart original.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/adi7_ya_" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://github.com/ditt-maulana" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://tiktok.com/@adtzen" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="f-title">Layanan</h4>
+        <ul class="f-links">
+          <li><a href="#katalog"><i class="fa-solid fa-chevron-right" style="font-size:.6rem"></i>Unit Baru</a></li>
+          <li><a href="#katalog"><i class="fa-solid fa-chevron-right" style="font-size:.6rem"></i>Unit Bekas Berkualitas</a></li>
+          <li><a href="#simulasi"><i class="fa-solid fa-chevron-right" style="font-size:.6rem"></i>Kredit &amp; Leasing</a></li>
+          <li><a href="#simulasi"><i class="fa-solid fa-chevron-right" style="font-size:.6rem"></i>Trade-In / Tukar Tambah</a></li>
+          <li><a href="#kontak"><i class="fa-solid fa-chevron-right" style="font-size:.6rem"></i>Servis &amp; Sparepart</a></li>
+          <li><a href="#kontak"><i class="fa-solid fa-chevron-right" style="font-size:.6rem"></i>Test Drive Booking</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="f-title">Bantuan</h4>
+        <ul class="f-links">
+          <li><a href="#faq"><i class="fa-solid fa-chevron-right" style="font-size:.6rem"></i>FAQ</a></li>
+          <li><a href="#simulasi"><i class="fa-solid fa-chevron-right" style="font-size:.6rem"></i>Panduan Kredit</a></li>
+          <li><a href="#faq"><i class="fa-solid fa-chevron-right" style="font-size:.6rem"></i>Klaim Garansi</a></li>
+          <li><a href="#kontak"><i class="fa-solid fa-chevron-right" style="font-size:.6rem"></i>Pengiriman Unit</a></li>
+          <li><a href="#kontak"><i class="fa-solid fa-chevron-right" style="font-size:.6rem"></i>Klaim Asuransi</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="f-title">Showroom</h4>
+        <ul class="f-contact">
+          <li><i class="fa-solid fa-location-dot"></i>Jl. Imam Bonjol, Semarang, Jawa Tengah 50134</li>
+          <li><i class="fa-solid fa-phone-volume"></i>0851-3453-1849</li>
+          <li><i class="fa-solid fa-envelope"></i>gaharu0473@gmail.com</li>
+          <li><i class="fa-regular fa-clock"></i>Senin–Sabtu 08.00–17.00<br>Minggu 09.00–14.00 WIB</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="footerYear"></span> Nusantara Motors. Hak cipta dilindungi.</span>
+      <div class="pay-chips"><span class="pay-chip">BCA</span><span class="pay-chip">MANDIRI</span><span class="pay-chip">BNI</span><span class="pay-chip">BRI</span><span class="pay-chip">CIMB</span><span class="pay-chip">VISA</span><span class="pay-chip">MASTERCARD</span><span class="pay-chip">TUNAI</span></div>
+      <div class="footer-bottom-links"><a href="#faq">Syarat &amp; Ketentuan</a><a href="#faq">Kebijakan Privasi</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ CART DRAWER ══════════ -->
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Keranjang belanja">
+  <div class="cart-head">
+    <h3>KERANJANG <span>ANDA</span></h3>
+    <button class="icon-btn" id="closeCartBtn" aria-label="Tutup keranjang"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-body" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="sum-row"><span>Subtotal Unit</span><b id="sumSubtotal">Rp 0</b></div>
+    <div class="sum-row"><span>Asuransi All Risk 1 Tahun</span><span class="free">GRATIS</span></div>
+    <div class="sum-row"><span>Pengiriman (Jabodetabek &amp; Jateng)</span><span class="free">GRATIS</span></div>
+    <div class="sum-total"><span>Total</span><b id="sumTotal">Rp 0</b></div>
+    <button class="btn btn-primary btn-block btn-lg" id="checkoutBtn" disabled><i class="fa-solid fa-lock"></i> Lanjut ke Checkout</button>
+  </div>
+</aside>
+
+<!-- ══════════ DETAIL MODAL ══════════ -->
+<div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-label="Detail mobil">
+  <div class="modal-card detail-modal-card">
+    <button class="modal-close" data-close-modal aria-label="Tutup detail"><i class="fa-solid fa-xmark"></i></button>
+    <div class="detail-grid">
+      <div class="detail-media">
+        <img id="dImage" src="" alt="Foto mobil">
+        <span class="badge-brand" id="dBrandBadge">BRAND</span>
+      </div>
+      <div class="detail-info">
+        <span class="detail-brand" id="dType">MPV · BARU</span>
+        <h2 id="dName">Nama Mobil</h2>
+        <div class="d-rating"><span class="stars" id="dStars">★★★★★</span><span id="dRatingText">4.9 (128 ulasan)</span></div>
+        <div class="d-price-box">
+          <small>Harga OTR Semarang</small>
+          <strong id="dPrice">Rp 0</strong>
+          <span>Cicilan ± <b id="dInstallment">Rp 0</b> / bulan (DP 20% · 60 bln)</span>
+        </div>
+        <div class="d-spec-grid">
+          <div class="spec-tile"><i class="fa-solid fa-calendar-days"></i><span><small>Tahun</small><b id="dYear">2024</b></span></div>
+          <div class="spec-tile"><i class="fa-solid fa-gears"></i><span><small>Transmisi</small><b id="dTrans">Manual</b></span></div>
+          <div class="spec-tile"><i class="fa-solid fa-gas-pump"></i><span><small>Bahan Bakar</small><b id="dFuel">Bensin</b></span></div>
+          <div class="spec-tile"><i class="fa-solid fa-chair"></i><span><small>Kapasitas</small><b id="dSeats">7 Kursi</b></span></div>
+          <div class="spec-tile"><i class="fa-solid fa-gauge-high"></i><span><small>Mesin</small><b id="dEngine">1.3L</b></span></div>
+          <div class="spec-tile"><i class="fa-solid fa-palette"></i><span><small>Warna</small><b id="dColor">Silver</b></span></div>
+        </div>
+        <p class="d-desc" id="dDesc">Deskripsi mobil.</p>
+        <div class="d-actions">
+          <div class="qty-stepper" aria-label="Jumlah unit">
+            <button id="dQtyMinus" aria-label="Kurangi"><i class="fa-solid fa-minus"></i></button>
+            <input type="text" id="dQty" value="1" readonly aria-label="Jumlah unit">
+            <button id="dQtyPlus" aria-label="Tambah"><i class="fa-solid fa-plus"></i></button>
+          </div>
+          <button class="btn btn-outline" id="dAddCartBtn" style="flex:1.1"><i class="fa-solid fa-cart-plus"></i> Keranjang</button>
+          <button class="btn btn-primary" id="dBuyNowBtn" style="flex:1.3"><i class="fa-solid fa-bolt"></i> Pesan Sekarang</button>
+        </div>
+        <div class="d-trust">
+          <span><i class="fa-solid fa-circle-check"></i> Garansi resmi</span>
+          <span><i class="fa-solid fa-circle-check"></i> Free 3x servis berkala</span>
+          <span><i class="fa-solid fa-circle-check"></i> Bisa trade-in</span>
+          <span><i class="fa-solid fa-circle-check"></i> Unit ready stock</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ CHECKOUT MODAL ══════════ -->
+<div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-label="Checkout pesanan">
+  <div class="modal-card checkout-card">
+    <button class="modal-close" data-close-modal aria-label="Tutup checkout"><i class="fa-solid fa-xmark"></i></button>
+
+    <div id="checkoutFormView">
+      <div class="co-head">
+        <h3>CHECKOUT <span style="color:var(--red)">PESANAN</span></h3>
+        <p>Isi data diri Anda — tim sales kami menghubungi via WhatsApp maksimal 1×24 jam untuk konfirmasi &amp; jadwal test drive.</p>
+      </div>
+      <form class="co-body" id="checkoutForm" novalidate>
+        <div class="form-row">
+          <div class="form-field" data-validate="name">
+            <label for="coName">Nama Lengkap *</label>
+            <input type="text" id="coName" placeholder="Budi Santoso" autocomplete="name">
+            <span class="field-error">Nama minimal 3 karakter.</span>
+          </div>
+          <div class="form-field" data-validate="phone">
+            <label for="coPhone">No. WhatsApp *</label>
+            <input type="tel" id="coPhone" placeholder="0812-3456-7890" autocomplete="tel">
+            <span class="field-error">Format tidak valid, contoh: 081234567890.</span>
+          </div>
+        </div>
+        <div class="form-field" data-validate="email">
+          <label for="coEmail">Email *</label>
+          <input type="email" id="coEmail" placeholder="nama@email.com" autocomplete="email">
+          <span class="field-error">Masukkan alamat email yang valid.</span>
+        </div>
+        <div class="form-field" data-validate="address">
+          <label for="coAddress">Alamat Lengkap (untuk STNK &amp; pengiriman) *</label>
+          <textarea id="coAddress" rows="2" placeholder="Jl. Melati No. 12, Kel. Purwosari, Kec. Semarang Tengah, Kota Semarang"></textarea>
+          <span class="field-error">Alamat minimal 15 karakter.</span>
+        </div>
+        <label class="sim-label" style="margin-bottom:8px"><span style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Metode Pembayaran</span></label>
+        <div class="pay-options">
+          <label class="pay-option"><input type="radio" name="payMethod" value="Transfer Bank" checked>
+            <span class="pay-card"><i class="fa-solid fa-building-columns"></i><span><b>Transfer Bank</b><small>BCA · Mandiri · BNI · BRI — langsung via virtual account</small></span><i class="fa-solid fa-circle-check pay-check"></i></span>
+          </label>
+          <label class="pay-option"><input type="radio" name="payMethod" value="Kredit">
+            <span class="pay-card"><i class="fa-solid fa-file-invoice-dollar"></i><span><b>Kredit Leasing</b><small>DP 10% · bunga 4.9% flat/thn · acc 1 hari kerja</small></span><i class="fa-solid fa-circle-check pay-check"></i></span>
+          </label>
+          <label class="pay-option"><input type="radio" name="payMethod" value="Trade-In + Tunai">
+            <span class="pay-card"><i class="fa-solid fa-right-left"></i><span><b>Trade-In + Tunai</b><small>Mobil lama Anda sebagai uang muka / potongan harga</small></span><i class="fa-solid fa-circle-check pay-check"></i></span>
+          </label>
+        </div>
+        <div class="co-summary" id="coSummary"></div>
+        <button type="submit" class="btn btn-primary btn-block co-submit" id="coSubmitBtn">
+          <span class="btn-spinner"></span>
+          <i class="fa-solid fa-lock btn-label-icon"></i>
+          <span class="btn-label">Konfirmasi Pesanan Sekarang</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="success-view" id="checkoutSuccessView">
+      <svg class="success-check" viewBox="0 0 120 120" aria-hidden="true">
+        <circle class="checkmark-circle" cx="60" cy="60" r="52"></circle>
+        <path class="checkmark-check" d="M38 62 L54 78 L86 44"></path>
+      </svg>
+      <h3>PESANAN <span style="color:var(--green)">BERHASIL!</span></h3>
+      <p>Terima kasih telah mempercayakan impian Anda pada Nusantara Motors. Simpan kode pesanan berikut — tim sales kami akan menghubungi Anda via WhatsApp maksimal 1×24 jam.</p>
+      <div class="order-code">
+        <b id="orderCode">NM-000000</b>
+        <button class="copy-btn" id="copyOrderBtn" aria-label="Salin kode pesanan"><i class="fa-regular fa-copy"></i></button>
+      </div>
+      <button class="btn btn-primary btn-block btn-lg" id="backToShopBtn"><i class="fa-solid fa-car"></i> Kembali Jelajah Katalog</button>
+    </div>
+  </div>
+</div>
+
+<canvas id="confettiCanvas" aria-hidden="true"></canvas>
+<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+
+<a class="wa-float" href="https://wa.me/6285134531849?text=Halo%20Sales%20Nusantara%20Motors!" target="_blank" rel="noopener" aria-label="Chat WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="back-top" id="backTopBtn" aria-label="Kembali ke atas"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+/* ============================================================
+   NUSANTARA MOTORS — Native JavaScript
+   Data mobil diambil langsung dari API resmi via fetch():
+   https://api-web.dnccudinus.org/api/mobil
+   ============================================================ */
+'use strict';
+
+const API_URL = 'https://api-web.dnccudinus.org/api/mobil';
+
+const FALLBACK_IMAGES = [
+  'https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1000&q=80',
+  'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80',
+  'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1000&q=80',
+  'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1000&q=80',
+  'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1000&q=80',
+  'https://images.unsplash.com/photo-1503376780353-7e6692767b2e?auto=format&fit=crop&w=1000&q=80',
+  'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80',
+  'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1000&q=80'
+];
+
+/* Data cadangan — tampil hanya jika API tidak dapat diakses */
+const FALLBACK_CARS = [
+  {id:'fb-1', nama_mobil:'Avanza 1.3 G MT', merk:'Toyota', tipe:'MPV', harga:233000000, gambar:'https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'Manual', bahan_bakar:'Bensin', kursi:7, mesin:'1.3L Dual VVT-i', warna:'Silver Metallic', kondisi:'Baru', stok:12, deskripsi:'MPV sejuta umat, irit, kabin lega 7 penumpang, resale value terbaik di kelasnya. Cocok untuk keluarga Indonesia.'},
+  {id:'fb-2', nama_mobil:'Fortuner 2.8 GR Sport 4x4', merk:'Toyota', tipe:'SUV', harga:831700000, gambar:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'Automatic', bahan_bakar:'Diesel', kursi:7, mesin:'2.8L 1GD-FTV', warna:'Attitude Black Mica', kondisi:'Baru', stok:6, deskripsi:'SUV diesel premium dengan tampilan GR Sport yang agresif, torsi 500 Nm, dan kenyamanan khas Fortuner.'},
+  {id:'fb-3', nama_mobil:'HR-V 1.5 SE CVT', merk:'Honda', tipe:'SUV', harga:399900000, gambar:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'CVT', bahan_bakar:'Bensin', kursi:5, mesin:'1.5L DOHC i-VTEC', warna:'Crystal Black Pearl', kondisi:'Baru', stok:9, deskripsi:'Compact SUV stylish dengan kabin lapang, Honda Sensing, dan performa responsif untuk mobilitas urban.'},
+  {id:'fb-4', nama_mobil:'Brio Satya E CVT', merk:'Honda', tipe:'City Car', harga:189800000, gambar:'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'CVT', bahan_bakar:'Bensin', kursi:5, mesin:'1.2L i-VTEC', warna:'Phoenix Orange Pearl', kondisi:'Baru', stok:15, deskripsi:'City car paling fun di kelasnya. Irit, lincah, fitur lengkap untuk mobilitas harian di perkotaan.'},
+  {id:'fb-5', nama_mobil:'Pajero Sport Dakar Ultimate 4x2', merk:'Mitsubishi', tipe:'SUV', harga:766200000, gambar:'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'Automatic', bahan_bakar:'Diesel', kursi:7, mesin:'2.4L MIVEC Diesel', warna:'Quartz White Pearl', kondisi:'Baru', stok:5, deskripsi:'Diesel legendaris dengan Super Select 4WD-II, interior premium, dan prestise tanpa kompromi di segala medan.'},
+  {id:'fb-6', nama_mobil:'Ertiga GX Hybrid AT', merk:'Suzuki', tipe:'MPV', harga:297800000, gambar:'https://images.unsplash.com/photo-1492144534655-ae79c964c9d?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'Automatic', bahan_bakar:'Hybrid', kursi:7, mesin:'1.5L Smart Hybrid', warna:'Prime Cool Black', kondisi:'Baru', stok:11, deskripsi:'MPV hybrid 7-penumpang paling efisien di kelasnya. Kombinasi mesin bensin + ISG, konsumsi BBM luar biasa irit.'},
+  {id:'fb-7', nama_mobil:'Xenia 1.3 X MT', merk:'Daihatsu', tipe:'MPV', harga:224200000, gambar:'https://images.unsplash.com/photo-1518987048-93e29699e79a?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'Manual', bahan_bakar:'Bensin', kursi:7, mesin:'1.3L 1NR-VE', warna:'Glittering Silver Metallic', kondisi:'Baru', stok:14, deskripsi:'MPV keluarga dengan harga paling kompetitif. Tangguh, irit, dan jaringan bengkel luas di seluruh Indonesia.'},
+  {id:'fb-8', nama_mobil:'Creta 1.5 Prime IVT', merk:'Hyundai', tipe:'SUV', harga:359000000, gambar:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'IVT', bahan_bakar:'Bensin', kursi:5, mesin:'1.5L Smartstream G1.5', warna:'Creamy White Pearl', kondisi:'Baru', stok:8, deskripsi:'SUV Korea dengan desain Sensuous Sportiness, Hyundai SmartSense, dan panoramic sunroof sebagai standar.'},
+  {id:'fb-9', nama_mobil:'Almaz 1.5T Touring', merk:'Wuling', tipe:'SUV', harga:405000000, gambar:'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'CVT', bahan_bakar:'Bensin', kursi:5, mesin:'1.5L Turbo', warna:'Starry Black', kondisi:'Baru', stok:7, deskripsi:'SUV turbo bertenaga dengan WIND sistem dan layar head unit terbesar di kelasnya. Teknologi futuristik harga rasional.'},
+  {id:'fb-10', nama_mobil:'Kijang Innova Zenix 2.0 Hybrid Q', merk:'Toyota', tipe:'MPV', harga:588300000, gambar:'https://images.unsplash.com/photo-1503376780353-7e6692767b2e?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'Automatic', bahan_bakar:'Hybrid', kursi:7, mesin:'2.0L Hybrid Dynamic Force', warna:'Platinum White Pearl', kondisi:'Baru', stok:6, deskripsi:'Multi Purpose Vehicle generasi terbaru dengan powertrain hybrid penuh. Irit maksimal dengan kemewahan kelas eksekutif.'},
+  {id:'fb-11', nama_mobil:'CX-5 2.5 Touring AWD', merk:'Mazda', tipe:'SUV', harga:605500000, gambar:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'Automatic', bahan_bakar:'Bensin', kursi:5, mesin:'2.5L SkyActiv-G', warna:'Soul Red Crystal', kondisi:'Baru', stok:4, deskripsi:'Jinba Ittai — mobil dan pengemudi menyatu. Handling tajam, kabin mewah khas Mazda, dan performa SkyActiv-G 2.5.'},
+  {id:'fb-12', nama_mobil:'Xpander 1.5 Ultimate CVT', merk:'Mitsubishi', tipe:'MPV', harga:323100000, gambar:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80', tahun:'2024', transmisi:'CVT', bahan_bakar:'Bensin', kursi:7, mesin:'1.5L MIVEC', warna:'Quartz White Pearl', kondisi:'Baru', stok:13, deskripsi:'Cross MPV dengan tampilan Dynamic Shield yang gagah. Kabin paling lapang di kelasnya dengan fitur keselamatan lengkap.'}
+];
+
+const state = {
+  cars: [],
+  filtered: [],
+  page: 1,
+  perPage: 9,
+  wishlist: new Set(),
+  cart: [],
+  filters: { q:'', brand:'', type:'', trans:'', sort:'popular', wishOnly:false },
+  detailQty: 1,
+  currentDetailId: null,
+  tenor: 36,
+  simPrice: 350,
+  simDp: 25
+};
+
+const el = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = n => 'Rp ' + Math.round(Number(n)||0).toLocaleString('id-ID');
+const fmtShort = n => 'Rp ' + (Number(n)/1e6).toLocaleString('id-ID',{maximumFractionDigits:1}) + ' jt';
+const hashStr = s => { let h=7; const str=String(s); for(let i=0;i<str.length;i++){ h=(h*31 + str.charCodeAt(i))>>>0; } return h; };
+
+/* ============ UTIL: parse harga dari berbagai format API ============ */
+function parsePrice(v){
+  if (typeof v === 'number') return isFinite(v) ? v : 0;
+  if (v == null) return 0;
+  const s = ' ' + String(v).toLowerCase() + ' ';
+  const hasMiliar = /miliar|milyar|bio/.test(s);
+  const hasJuta = /juta|jt/.test(s);
+  if (hasMiliar || hasJuta){
+    const m = s.match(/(\d+(?:[.,]\d+)?)/);
+    if (!m) return 0;
+    const num = parseFloat(m[1].replace(/,/g,'.'));
+    return Math.round(num * (hasMiliar ? 1e9 : 1e6));
+  }
+  const digits = s.replace(/[^\d]/g,'');
+  let val = digits ? parseInt(digits,10) : 0;
+  if (val > 0 && val < 10000) val *= 1e6;
+  return val;
+}
+function normalizeImage(v){
+  if (!v) return '';
+  let s = String(v).trim();
+  if (!s || s === 'null' || s === 'undefined') return '';
+  if (s.startsWith('//')) return 'https:' + s;
+  if (/^https?:\/\//i.test(s)) return s;
+  if (s.startsWith('/')) return 'https://api-web.dnccudinus.org' + s;
+  return 'https://api-web.dnccudinus.org/' + s.replace(/^\.?\//,'');
+}
+function pick(obj, keys){
+  const lower = {};
+  for (const k in obj){ lower[String(k).toLowerCase().replace(/[\s\-]+/g,'_')] = obj[k]; }
+  for (const k of keys){
+    const v = lower[k];
+    if (v !== undefined && v !== null && String(v).trim() !== '') return v;
+  }
+  return undefined;
+}
+function extractArray(json){
+  if (Array.isArray(json)) return json;
+  if (!json || typeof json !== 'object') return [];
+  const paths = ['data','result','results','rows','items','cars','mobil','payload','list','records'];
+  for (const p of paths){
+    if (Array.isArray(json[p])) return json[p];
+    if (json[p] && typeof json[p] === 'object'){
+      for (const p2 of paths){ if (Array.isArray(json[p][p2])) return json[p][p2]; }
+      const nested = Object.values(json[p]).find(v => Array.isArray(v));
+      if (nested) return nested;
+    }
+  }
+  const anyArr = Object.values(json).find(v => Array.isArray(v));
+  return anyArr || [];
+}
+function guessBrand(name){ return String(name).trim().split(/\s+/)[0].replace(/^./, c => c.toUpperCase()); }
+
+function normalizeCar(raw, i){
+  if (!raw || typeof raw !== 'object') return null;
+  let name = pick(raw, ['nama_mobil','nama','name','title','model','kendaraan','car_name','namamobil','all_name','tipe_mobil']);
+  if (!name) return null;
+  const brand = pick(raw, ['merk','merek','brand','pabrikan','maker','company','manufaktur']);
+  name = String(name).trim();
+  if (brand && !name.toLowerCase().includes(String(brand).toLowerCase())) name = String(brand).trim() + ' ' + name;
+  const price = parsePrice(pick(raw, ['harga','price','harga_jual','harga_mobil','harga_otr','hargaotr','biaya','harga_beli','hargajual']));
+  let image = normalizeImage(pick(raw, ['gambar','image','foto','photo','picture','thumbnail','gambar_mobil','image_url','url_gambar','img','foto_mobil','link_gambar','url']));
+  if (!image) image = FALLBACK_IMAGES[i % FALLBACK_IMAGES.length];
+  return {
+    id: String(pick(raw, ['id','id_mobil','mobil_id','kode','id_kendaraan','slug']) ?? ('car-' + i)),
+    name,
+    brand: brand ? String(brand).trim() : guessBrand(name),
+    type: String(pick(raw, ['tipe','type','kategori','jenis','category','segment','body_type']) || 'Lainnya').trim(),
+    price,
+    image,
+    fallback: FALLBACK_IMAGES[i % FALLBACK_IMAGES.length],
+    year: String(pick(raw, ['tahun','year','tahun_mobil','thn','model_year']) || '2024'),
+    transmission: String(pick(raw, ['transmisi','transmission','gearbox','tipe_transmisi','jenis_transmisi']) || '-').trim(),
+    fuel: String(pick(raw, ['bahan_bakar','fuel','bbm','bahanbakar','bahanbakar_mobil']) || '-').trim(),
+    seats: String(pick(raw, ['kapasitas','seat','kursi','kapasitas_penumpang','daya_tampung','tempat_duduk','jumlah_kursi']) || '-').trim(),
+    engine: String(pick(raw, ['mesin','engine','kapasitas_mesin','cc','silinder','tipe_mesin']) || '-').trim(),
+    color: String(pick(raw, ['warna','color','warna_mobil']) || '-').trim(),
+    km: pick(raw, ['kilometer','km','odometer','mileage']) ?? null,
+    condition: String(pick(raw, ['kondisi','condition','keadaan','status_unit']) || 'Baru').trim(),
+    stock: pick(raw, ['stok','stock','qty','jumlah']) ?? null,
+    desc: String(pick(raw, ['deskripsi','description','keterangan','desc','info','detail']) || ('Unit ' + name + ' resmi dari Nusantara Motors. Kondisi prima, surat-surat lengkap, garansi resmi pabrikan, dan siap pakai. Hubungi sales kami untuk test drive dan penawaran terbaik hari ini.')).trim()
+  };
+}
+
+/* ============ FETCH DATA MOBIL DARI API ============ */
+async function loadCars(){
+  showSkeletons();
+  let data = null, live = false;
+  try{
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 10000);
+    const res = await fetch(API_URL, { signal: ctrl.signal, headers: { 'Accept': 'application/json' } });
+    clearTimeout(timer);
+    if (res.ok){
+      const json = await res.json();
+      const arr = extractArray(json);
+      if (arr.length){
+        data = arr.map((item, i) => normalizeCar(item, i)).filter(Boolean);
+        live = data.length > 0;
+      }
+    }
+  }catch(err){
+    console.warn('[Nusantara Motors] API tidak dapat diakses, menggunakan data cadangan.', err);
+  }
+  if (!data || !data.length){ data = FALLBACK_CARS.map((c, i) => normalizeCar(c, i)).filter(Boolean); live = false; }
+  state.cars = data;
+  setApiStatus(live);
+  buildFilterOptions(data);
+  applyFilters();
+}
+function setApiStatus(live){
+  const pill = el('apiPill'), text = el('apiPillText');
+  pill.classList.remove('live','demo');
+  if (live){ pill.classList.add('live'); text.textContent = 'Live API · api-web.dnccudinus.org'; }
+  else { pill.classList.add('demo'); text.textContent = 'Mode Demo · API tidak dapat diakses'; }
+}
+function showSkeletons(){
+  el('carGrid').innerHTML = Array.from({length:6}, () =>
+    '<div class="skeleton"><div class="sk-img"></div><div class="sk-line" style="width:70%"></div><div class="sk-line" style="width:45%"></div><div class="sk-line" style="width:85%;height:38px;margin-bottom:16px"></div></div>'
+  ).join('');
+}
+function buildFilterOptions(cars){
+  const uniq = key => [...new Set(cars.map(c => String(c[key]||'').trim()).filter(Boolean))].sort((a,b) => a.localeCompare(b,'id'));
+  const fill = (sel, values, label) => {
+    const current = sel.value;
+    sel.innerHTML = '<option value="">' + label + '</option>' + values.map(v => '<option value="' + esc(v) + '">' + esc(v) + '</option>').join('');
+    sel.value = values.includes(current) ? current : '';
+  };
+  fill(el('brandFilter'), uniq('brand'), 'Semua Merk');
+  fill(el('typeFilter'), uniq('type'), 'Semua Tipe');
+  const transSet = [...new Set(cars.map(c => /auto|cvt|at|ivt|dct|amt/i.test(c.transmission) ? 'Automatic' : (/manual|mt/i.test(c.transmission) ? 'Manual' : c.transmission)).filter(t => t && t !== '-'))].sort();
+  fill(el('transFilter'), transSet, 'Semua Transmisi');
+}
+
+/* ============ FILTER + SORT + PAGINATION ============ */
+function applyFilters(){
+  const f = state.filters;
+  let list = state.cars.filter(c => {
+    if (f.wishOnly && !state.wishlist.has(c.id)) return false;
+    if (f.brand && c.brand.toLowerCase() !== f.brand.toLowerCase()) return false;
+    if (f.type && c.type.toLowerCase() !== f.type.toLowerCase()) return false;
+    if (f.trans){
+      const t = c.transmission.toLowerCase();
+      if (f.trans.toLowerCase() === 'automatic'){ if(!/auto|cvt|at|ivt|dct|amt/.test(t)) return false; }
+      else if (f.trans.toLowerCase() === 'manual'){ if(!/manual|mt/.test(t)) return false; }
+      else if (!t.includes(f.trans.toLowerCase())) return false;
+    }
+    if (f.q){
+      const hay = (c.name + ' ' + c.brand + ' ' + c.type + ' ' + c.fuel + ' ' + c.transmission + ' ' + c.year).toLowerCase();
+      if (!hay.includes(f.q.toLowerCase())) return false;
+    }
+    return true;
+  });
+  switch(f.sort){
+    case 'price-asc':  list = [...list].sort((a,b) => (a.price||Infinity) - (b.price||Infinity)); break;
+    case 'price-desc': list = [...list].sort((a,b) => (b.price||0) - (a.price||0)); break;
+    case 'year':       list = [...list].sort((a,b) => (parseInt(b.year)||0) - (parseInt(a.year)||0)); break;
+    case 'name':       list = [...list].sort((a,b) => a.name.localeCompare(b.name,'id')); break;
+    default: break;
+  }
+  state.filtered = list;
+  state.page = 1;
+  renderCars();
+}
+function ratingFor(id){ return { r: 4.3 + (hashStr(id) % 70) / 100, n: 90 + (hashStr(id + 'x') % 800) }; }
+function installmentOf(price){ return price > 0 ? (price * 0.8 * 1.225) / 60 : 0; }
+
+function cardHTML(car){
+  const rating = ratingFor(car.id);
+  const inst = installmentOf(car.price);
+  const wished = state.wishlist.has(car.id);
+  const priceHTML = car.price > 0
+    ? '<div class="price-value">' + fmt(car.price) + '</div><div class="install-row"><i class="fa-solid fa-circle-info"></i>Cicilan mulai <b>' + fmtShort(inst) + '/bln</b></div>'
+    : '<div class="price-value">Harga on Request</div><div class="install-row"><i class="fa-solid fa-phone"></i>Hubungi sales untuk penawaran</div>';
+  return (
+    '<article class="car-card" data-card-id="' + esc(car.id) + '">' +
+      '<div class="car-media" data-action="detail" data-id="' + esc(car.id) + '" role="button" tabindex="0" aria-label="Lihat detail ' + esc(car.name) + '">' +
+        '<img src="' + esc(car.image) + '" alt="' + esc(car.name) + '" loading="lazy" data-fb="' + esc(car.fallback) + '" onerror="this.onerror=null;this.src=this.dataset.fb">' +
+        '<span class="badge-brand">' + esc(car.brand) + '</span>' +
+        '<span class="badge-cond">' + esc(car.condition) + '</span>' +
+        (car.stock !== null && car.stock !== undefined && car.stock !== '' ? '<span class="badge-stock">Stok: ' + esc(car.stock) + ' unit</span>' : '') +
+        '<button class="wishlist-btn' + (wished ? ' active' : '') + '" data-action="toggle-wish" data-id="' + esc(car.id) + '" data-wish-id="' + esc(car.id) + '" aria-label="Toggle wishlist" aria-pressed="' + wished + '"><i class="' + (wished ? 'fa-solid' : 'fa-regular') + ' fa-heart"></i></button>' +
+      '</div>' +
+      '<div class="car-body">' +
+        '<h3 class="car-name" title="' + esc(car.name) + '">' + esc(car.name) + '</h3>' +
+        '<div class="car-specs">' +
+          '<span><i class="fa-solid fa-calendar"></i>' + esc(car.year) + '</span>' +
+          '<span><i class="fa-solid fa-gears"></i>' + esc(car.transmission) + '</span>' +
+          '<span><i class="fa-solid fa-gas-pump"></i>' + esc(car.fuel) + '</span>' +
+          '<span><i class="fa-solid fa-chair"></i>' + esc(car.seats) + (String(car.seats).match(/kursi/i) ? '' : ' Kursi') + '</span>' +
+        '</div>' +
+        '<div class="price-block"><small>Harga OTR Semarang</small>' + priceHTML + '</div>' +
+        '<div class="car-actions">' +
+          '<button class="btn btn-outline" data-action="detail" data-id="' + esc(car.id) + '"><i class="fa-solid fa-eye"></i> Detail</button>' +
+          '<button class="add-cart-btn" data-action="add-cart" data-id="' + esc(car.id) + '" aria-label="Tambah ' + esc(car.name) + ' ke keranjang"><i class="fa-solid fa-cart-plus"></i></button>' +
+        '</div>' +
+      '</div>' +
+    '</article>'
+  );
+}
+function renderCars(){
+  const grid = el('carGrid');
+  const list = state.filtered;
+  const total = list.length;
+  el('emptyState').style.display = total === 0 ? 'block' : 'none';
+  const start = (state.page - 1) * state.perPage;
+  const pageItems = list.slice(start, start + state.perPage);
+  grid.innerHTML = pageItems.map(cardHTML).join('');
+  el('resultCount').innerHTML = total === 0
+    ? 'Tidak ada mobil yang cocok dengan filter Anda.'
+    : 'Menampilkan <b>' + (start + 1) + '–' + Math.min(start + state.perPage, total) + '</b> dari <b>' + total + '</b> mobil ditemukan';
+  renderPagination(total);
+}
+function renderPagination(total){
+  const pg = el('pagination');
+  const pages = Math.ceil(total / state.perPage);
+  pg.innerHTML = '';
+  if (pages <= 1) return;
+  const mk = (label, page, opts) => {
+    const b = document.createElement('button');
+    b.className = 'pg-btn' + (opts && opts.active ? ' active' : '');
+    b.innerHTML = label;
+    if (opts && opts.disabled){ b.disabled = true; }
+    b.addEventListener('click', () => { state.page = page; renderCars(); el('katalog').scrollIntoView({behavior:'smooth', block:'start'}); });
+    pg.appendChild(b);
+  };
+  mk('<i class="fa-solid fa-chevron-left"></i>', state.page - 1, {disabled: state.page === 1});
+  let s = Math.max(1, Math.min(state.page - 2, pages - 4));
+  let e = Math.min(pages, s + 4);
+  s = Math.max(1, e - 4);
+  for (let i = s; i <= e; i++){ mk(String(i), i, {active: i === state.page}); }
+  mk('<i class="fa-solid fa-chevron-right"></i>', state.page + 1, {disabled: state.page === pages});
+}
+
+/* ============ WISHLIST ============ */
+function toggleWishlist(id){
+  if (state.wishlist.has(id)) state.wishlist.delete(id); else state.wishlist.add(id);
+  try{ localStorage.setItem('nm_wishlist', JSON.stringify([...state.wishlist])); }catch(e){}
+  updateBadges();
+  document.querySelectorAll('[data-wish-id="' + id + '"]').forEach(btn => {
+    const active = state.wishlist.has(id);
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', String(active));
+    btn.innerHTML = '<i class="' + (active ? 'fa-solid' : 'fa-regular') + ' fa-heart"></i>';
+  });
+  if (state.filters.wishOnly) applyFilters();
+  const car = state.cars.find(c => c.id === id);
+  toast(state.wishlist.has(id) ? (car ? car.name : 'Mobil') + ' ditambahkan ke wishlist' : 'Dihapus dari wishlist', 'info');
+}
+
+/* ============ CART ============ */
+function cartTotalQty(){ return state.cart.reduce((s, i) => s + i.qty, 0); }
+function cartSubtotal(){ return state.cart.reduce((s, i) => s + (i.price || 0) * i.qty, 0); }
+function saveCart(){ try{ localStorage.setItem('nm_cart', JSON.stringify(state.cart)); }catch(e){} }
+function bumpBadge(elm){ elm.classList.remove('bump'); void elm.offsetWidth; elm.classList.add('bump'); }
+function updateBadges(){
+  el('cartBadge').textContent = cartTotalQty();
+  el('wishBadge').textContent = state.wishlist.size;
+}
+function addToCart(id, qty){
+  qty = qty || 1;
+  const car = state.cars.find(c => c.id === id); if (!car) return;
+  const existing = state.cart.find(i => i.id === id);
+  if (existing) existing.qty += qty;
+  else state.cart.push({ id: car.id, qty, name: car.name, brand: car.brand, price: car.price, image: car.image, fallback: car.fallback });
+  saveCart(); renderCart(); updateBadges(); bumpBadge(el('cartBadge'));
+  toast(car.name + ' ditambahkan ke keranjang', 'success');
+}
+function changeQty(id, delta){
+  const item = state.cart.find(i => i.id === id); if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) state.cart = state.cart.filter(i => i.id !== id);
+  saveCart(); renderCart(); updateBadges();
+}
+function removeFromCart(id){
+  const item = state.cart.find(i => i.id === id);
+  state.cart = state.cart.filter(i => i.id !== id);
+  saveCart(); renderCart(); updateBadges();
+  if (item) toast(item.name + ' dihapus dari keranjang', 'info');
+}
+function renderCart(){
+  const wrap = el('cartItems');
+  if (!state.cart.length){
+    wrap.innerHTML = '<div class="cart-empty"><i class="fa-solid fa-cart-shopping"></i><h4>Keranjang Masih Kosong</h4><p>Jelajahi katalog dan temukan mobil impian Anda hari ini.</p><button class="btn btn-primary" id="emptyCartShopBtn"><i class="fa-solid fa-car"></i> Jelajah Katalog</button></div>';
+  } else {
+    wrap.innerHTML = state.cart.map(item => (
+      '<div class="cart-item" data-id="' + esc(item.id) + '">' +
+        '<img src="' + esc(item.image) + '" alt="' + esc(item.name) + '" data-fb="' + esc(item.fallback || FALLBACK_IMAGES[0]) + '" onerror="this.onerror=null;this.src=this.dataset.fb">' +
+        '<div class="ci-info"><b>' + esc(item.name) + '</b><span class="ci-price">' + (item.price > 0 ? fmt(item.price) : 'Harga on request') + '</span>' +
+          '<div class="ci-qty"><button data-action="cart-dec" data-id="' + esc(item.id) + '" aria-label="Kurangi"><i class="fa-solid fa-minus"></i></button><span>' + item.qty + '</span><button data-action="cart-inc" data-id="' + esc(item.id) + '" aria-label="Tambah"><i class="fa-solid fa-plus"></i></button></div>' +
+        '</div>' +
+        '<button class="ci-remove" data-action="cart-remove" data-id="' + esc(item.id) + '" aria-label="Hapus dari keranjang"><i class="fa-solid fa-trash-can"></i></button>' +
+      '</div>'
+    )).join('');
+  }
+  el('sumSubtotal').textContent = fmt(cartSubtotal());
+  el('sumTotal').textContent = fmt(cartSubtotal());
+  el('checkoutBtn').disabled = state.cart.length === 0;
+}
+
+/* ============ PANEL / MODAL HELPERS ============ */
+const overlay = el('overlay');
+function lockScroll(v){ document.body.classList.toggle('locked', v); }
+function openCart(){ el('cartDrawer').classList.add('open'); overlay.classList.add('show'); lockScroll(true); }
+function closeAllPanels(){
+  el('cartDrawer').classList.remove('open');
+  el('detailModal').classList.remove('open');
+  el('checkoutModal').classList.remove('open');
+  overlay.classList.remove('show');
+  lockScroll(false);
+}
+overlay.addEventListener('click', closeAllPanels);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAllPanels(); });
+
+/* ============ DETAIL MODAL ============ */
+function starsHTML(rating){
+  const full = Math.floor(rating);
+  const half = (rating - full) >= 0.4 ? 1 : 0;
+  let html = '';
+  for (let i = 0; i < full; i++) html += '<i class="fa-solid fa-star"></i>';
+  if (half) html += '<i class="fa-solid fa-star-half-stroke"></i>';
+  for (let i = full + half; i < 5; i++) html += '<i class="fa-regular fa-star"></i>';
+  return html;
+}
+function openDetail(id){
+  const car = state.cars.find(c => c.id === id); if (!car) return;
+  state.currentDetailId = id;
+  state.detailQty = 1;
+  const rating = ratingFor(id);
+  const img = el('dImage');
+  img.onerror = function(){ this.onerror = null; this.src = car.fallback; };
+  img.src = car.image;
+  img.alt = car.name;
+  el('dBrandBadge').textContent = car.brand;
+  el('dType').textContent = (car.type + ' · ' + car.condition).toUpperCase();
+  el('dName').textContent = car.name;
+  el('dStars').innerHTML = starsHTML(rating.r);
+  el('dRatingText').textContent = rating.r.toFixed(1) + ' (' + rating.n + ' ulasan)';
+  el('dPrice').textContent = car.price > 0 ? fmt(car.price) : 'Harga on Request';
+  el('dInstallment').textContent = car.price > 0 ? fmtShort(installmentOf(car.price)) : '-';
+  el('dYear').textContent = car.year;
+  el('dTrans').textContent = car.transmission;
+  el('dFuel').textContent = car.fuel;
+  el('dSeats').textContent = car.seats + (String(car.seats).match(/kursi/i) ? '' : ' Kursi');
+  el('dEngine').textContent = car.engine;
+  el('dColor').textContent = car.color;
+  el('dDesc').textContent = car.desc;
+  el('dQty').value = '1';
+  el('detailModal').classList.add('open');
+  overlay.classList.add('show');
+  lockScroll(true);
+}
+
+/* ============ CHECKOUT ============ */
+function renderCheckoutSummary(){
+  const box = el('coSummary');
+  box.innerHTML = state.cart.map(i =>
+    '<div class="co-sum-row"><span>' + esc(i.name) + ' × ' + i.qty + '</span><b>' + (i.price > 0 ? fmt(i.price * i.qty) : '-') + '</b></div>'
+  ).join('') + '<div class="co-sum-total"><span>Total Pembayaran</span><b>' + fmt(cartSubtotal()) + '</b></div>';
+}
+function openCheckout(){
+  if (!state.cart.length){ toast('Keranjang Anda masih kosong', 'warning'); return; }
+  el('checkoutFormView').style.display = 'block';
+  el('checkoutSuccessView').classList.remove('show');
+  const btn = el('coSubmitBtn');
+  btn.classList.remove('loading');
+  btn.querySelector('.btn-label').textContent = 'Konfirmasi Pesanan Sekarang';
+  renderCheckoutSummary();
+  el('detailModal').classList.remove('open');
+  el('cartDrawer').classList.remove('open');
+  el('checkoutModal').classList.add('open');
+  overlay.classList.add('show');
+  lockScroll(true);
+}
+const validators = {
+  name: v => v.trim().length >= 3,
+  phone: v => /^(\+62|62|0)8[1-9][0-9\-\s]{6,13}$/.test(v.trim()),
+  email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+  address: v => v.trim().length >= 15
+};
+function validateField(field){
+  const input = field.querySelector('input, textarea');
+  const type = field.dataset.validate;
+  const ok = validators[type] ? validators[type](input.value) : true;
+  field.classList.toggle('has-error', !ok);
+  return ok;
+}
+el('checkoutForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const fields = this.querySelectorAll('.form-field[data-validate]');
+  let allOk = true, firstBad = null;
+  fields.forEach(f => { const ok = validateField(f); if (!ok){ allOk = false; if (!firstBad) firstBad = f; } });
+  if (!allOk){ toast('Periksa kembali data yang ditandai merah', 'warning'); if (firstBad) firstBad.querySelector('input,textarea').focus(); return; }
+  const btn = el('coSubmitBtn');
+  btn.classList.add('loading');
+  btn.querySelector('.btn-label').textContent = 'Memproses Pesanan…';
+  btn.disabled = true;
+  setTimeout(() => {
+    const code = 'NM-' + Date.now().toString().slice(-4) + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+    el('orderCode').textContent = code;
+    el('checkoutFormView').style.display = 'none';
+    el('checkoutSuccessView').classList.add('show');
+    state.cart = []; saveCart(); renderCart(); updateBadges();
+    btn.disabled = false;
+    launchConfetti();
+  }, 1900);
+});
+el('checkoutForm').querySelectorAll('.form-field[data-validate]').forEach(f => {
+  f.querySelector('input, textarea').addEventListener('input', () => f.classList.remove('has-error'));
+});
+
+/* ============ CONFETTI (vanilla canvas) ============ */
+function launchConfetti(){
+  const c = el('confettiCanvas');
+  const ctx = c.getContext('2d');
+  c.width = window.innerWidth; c.height = window.innerHeight;
+  const colors = ['#e10600','#f5c34f','#22c55e','#3b82f6','#ec4899','#ffffff','#ff7a45'];
+  const P = [];
+  for (let i = 0; i < 150; i++){
+    P.push({ x: Math.random() * c.width, y: -30 - Math.random() * c.height * 0.55, w: 6 + Math.random()*9, h: 8 + Math.random()*12, color: colors[i % colors.length], vy: 2.2 + Math.random()*3.4, vx: -1.8 + Math.random()*3.6, rot: Math.random()*Math.PI, vr: -0.06 + Math.random()*0.12 });
+  }
+  let frames = 0;
+  (function tick(){
+    ctx.clearRect(0,0,c.width,c.height);
+    frames++;
+    P.forEach(p => {
+      p.y += p.vy; p.x += p.vx + Math.sin((p.y + p.rot*80) * 0.02); p.rot += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.fillStyle = p.color; ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+    });
+    if (frames < 300) requestAnimationFrame(tick); else ctx.clearRect(0,0,c.width,c.height);
+  })();
+}
+
+/* ============ TOAST ============ */
+function toast(msg, type){
+  type = type || 'success';
+  const icons = { success:'fa-circle-check', info:'fa-circle-info', warning:'fa-triangle-exclamation' };
+  const wrap = el('toastWrap');
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.innerHTML = '<i class="fa-solid ' + (icons[type] || icons.success) + '"></i><span>' + esc(msg) + '</span>';
+  wrap.appendChild(t);
+  requestAnimationFrame(() => t.classList.add('show'));
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 380); }, 3800);
+}
+
+/* ============ GLOBAL EVENT DELEGATION ============ */
+document.addEventListener('click', e => {
+  const trigger = e.target.closest('[data-action]');
+  if (trigger){
+    const action = trigger.dataset.action;
+    const id = trigger.dataset.id;
+    if (action === 'detail'){ openDetail(id); return; }
+    if (action === 'add-cart'){ addToCart(id, 1); return; }
+    if (action === 'toggle-wish'){ toggleWishlist(id); return; }
+    if (action === 'cart-inc'){ changeQty(id, +1); return; }
+    if (action === 'cart-dec'){ changeQty(id, -1); return; }
+    if (action === 'cart-remove'){ removeFromCart(id); return; }
+  }
+  const closer = e.target.closest('[data-close-modal]');
+  if (closer){ closeAllPanels(); return; }
+  if (e.target.id === 'emptyCartShopBtn'){ closeAllPanels(); el('katalog').scrollIntoView({behavior:'smooth'}); return; }
+});
+
+/* detail modal controls */
+el('dQtyMinus').addEventListener('click', () => { state.detailQty = Math.max(1, state.detailQty - 1); el('dQty').value = state.detailQty; });
+el('dQtyPlus').addEventListener('click', () => { state.detailQty = Math.min(20, state.detailQty + 1); el('dQty').value = state.detailQty; });
+el('dAddCartBtn').addEventListener('click', () => { if (state.currentDetailId) addToCart(state.currentDetailId, state.detailQty); });
+el('dBuyNowBtn').addEventListener('click', () => { if (state.currentDetailId){ addToCart(state.currentDetailId, state.detailQty); openCheckout(); } });
+
+/* cart drawer */
+el('cartBtnNav').addEventListener('click', () => { el('cartDrawer').classList.contains('open') ? closeAllPanels() : (closeAllPanels(), openCart()); });
+el('closeCartBtn').addEventListener('click', closeAllPanels);
+el('checkoutBtn').addEventListener('click', openCheckout);
+el('backToShopBtn').addEventListener('click', () => { closeAllPanels(); el('katalog').scrollIntoView({behavior:'smooth'}); });
+el('copyOrderBtn').addEventListener('click', async () => {
+  const code = el('orderCode').textContent.trim();
+  try{ await navigator.clipboard.writeText(code); toast('Kode pesanan disalin ke clipboard', 'success'); }
+  catch(err){ toast('Kode pesanan: ' + code, 'info'); }
+});
+
+/* wishlist navbar toggle */
+el('wishNavBtn').addEventListener('click', () => {
+  state.filters.wishOnly = !state.filters.wishOnly;
+  el('wishNavBtn').classList.toggle('active', state.filters.wishOnly);
+  el('wishOnlyBtn').classList.toggle('active', state.filters.wishOnly);
+  el('wishOnlyBtn').setAttribute('aria-pressed', String(state.filters.wishOnly));
+  applyFilters();
+  el('katalog').scrollIntoView({behavior:'smooth'});
+  toast(state.filters.wishOnly ? 'Menampilkan wishlist Anda saja' : 'Menampilkan semua mobil', 'info');
+});
+el('wishOnlyBtn').addEventListener('click', () => el('wishNavBtn').click());
+
+/* filters */
+let searchTimer;
+el('searchInput').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => { state.filters.q = e.target.value.trim(); applyFilters(); }, 260);
+});
+el('brandFilter').addEventListener('change', e => { state.filters.brand = e.target.value; applyFilters(); });
+el('typeFilter').addEventListener('change', e => { state.filters.type = e.target.value; applyFilters(); });
+el('transFilter').addEventListener('change', e => { state.filters.trans = e.target.value; applyFilters(); });
+el('sortFilter').addEventListener('change', e => { state.filters.sort = e.target.value; applyFilters(); });
+function resetAllFilters(){
+  state.filters = { q:'', brand:'', type:'', trans:'', sort:'popular', wishOnly:false };
+  el('searchInput').value = ''; el('brandFilter').value = ''; el('typeFilter').value = ''; el('transFilter').value = ''; el('sortFilter').value = 'popular';
+  el('wishOnlyBtn').classList.remove('active'); el('wishNavBtn').classList.remove('active');
+  applyFilters();
+  toast('Semua filter telah direset', 'info');
+}
+el('resetFiltersBtn').addEventListener('click', resetAllFilters);
+el('emptyResetBtn').addEventListener('click', resetAllFilters);
+
+/* keyboard support for media cards */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.matches('.car-media[data-action="detail"]')){ openDetail(e.target.dataset.id); }
+});
+
+/* ============ THEME TOGGLE ============ */
+function applyTheme(theme){
+  document.documentElement.setAttribute('data-theme', theme);
+  el('themeIcon').className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  try{ localStorage.setItem('nm_theme', theme); }catch(e){}
+}
+el('themeToggle').addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+/* ============ NAVBAR SCROLL & BACK TO TOP ============ */
+const navbar = el('navbar'), backTop = el('backTopBtn');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY || document.documentElement.scrollTop;
+  navbar.classList.toggle('scrolled', y > 40);
+  backTop.classList.toggle('show', y > 420);
+}, { passive: true });
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ============ MOBILE MENU ============ */
+const hamburger = el('hamburger'), mobileMenu = el('mobileMenu'), hamburgerIcon = el('hamburgerIcon');
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', String(open));
+  hamburgerIcon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+  lockScroll(open);
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  hamburgerIcon.className = 'fa-solid fa-bars';
+  lockScroll(false);
+}));
+
+/* ============ COUNTER STATS ============ */
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const elNum = entry.target;
+    const target = +elNum.dataset.target;
+    const useId = elNum.dataset.format === 'id';
+    const dur = 1800, start = performance.now();
+    (function frame(t){
+      const p = Math.min((t - start) / dur, 1);
+      const ease = 1 - Math.pow(2, -9 * p);
+      const val = Math.round(target * ease);
+      elNum.textContent = useId ? val.toLocaleString('id-ID') : String(val);
+      if (p < 1) requestAnimationFrame(frame);
+    })(start);
+    counterObserver.unobserve(elNum);
+  });
+}, { threshold: 0.6 });
+document.querySelectorAll('.stat-num').forEach(n => counterObserver.observe(n));
+
+/* ============ SIMULATOR KREDIT ============ */
+const simPrice = el('simPrice'), simDp = el('simDp');
+const TENOR_MONTHS = () => state.tenor;
+const CIRC = 2 * Math.PI * 56; // r = 56
+function setRangeFill(input){
+  const pct = ((input.value - input.min) / (input.max - input.min)) * 100;
+  input.style.setProperty('--fill', pct + '%');
+}
+function updateSimulator(){
+  state.simPrice = +simPrice.value;
+  state.simDp = +simDp.value;
+  setRangeFill(simPrice); setRangeFill(simDp);
+  const price = state.simPrice * 1e6;
+  const dpAmt = price * state.simDp / 100;
+  const pokok = price - dpAmt;
+  const tenor = TENOR_MONTHS();
+  const bunga = pokok * 0.05 * (tenor / 12);
+  const cicilan = (pokok + bunga) / tenor;
+  const total = dpAmt + pokok + bunga;
+
+  el('simPriceLabel').textContent = fmt(price);
+  el('simDpLabel').textContent = state.simDp + '% — ' + fmt(dpAmt);
+  el('simTenorLabel').textContent = tenor + ' Bulan';
+  el('simCicilanCenter').textContent = fmt(cicilan);
+  el('simDpVal').textContent = fmt(dpAmt);
+  el('simPokokVal').textContent = fmt(pokok);
+  el('simBungaVal').textContent = fmt(bunga);
+  el('simTotalVal').textContent = fmt(total);
+
+  const segs = [ { id:'segDp', val: dpAmt }, { id:'segPokok', val: pokok }, { id:'segBunga', val: bunga } ];
+  const GAP = 3;
+  let acc = 0;
+  segs.forEach(seg => {
+    const circle = el(seg.id);
+    const len = Math.max((seg.val / total) * CIRC - GAP, 0.5);
+    circle.style.strokeDasharray = len + ' ' + (CIRC - len);
+    circle.style.strokeDashoffset = String(-acc);
+    acc += (seg.val / total) * CIRC;
+  });
+}
+simPrice.addEventListener('input', updateSimulator);
+simDp.addEventListener('input', updateSimulator);
+document.querySelectorAll('#tenorGroup .tenor-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#tenorGroup .tenor-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.tenor = +btn.dataset.tenor;
+    updateSimulator();
+  });
+});
+document.querySelectorAll('.quick-pick').forEach(btn => {
+  btn.addEventListener('click', () => { simPrice.value = btn.dataset.price; updateSimulator(); });
+});
+
+/* ============ TESTIMONIALS ============ */
+const TESTIMONIALS = [
+  { img:'https://randomuser.me/api/portraits/men/32.jpg', name:'Rizky Pratama', car:'Toyota Fortuner GR Sport', city:'Jakarta Selatan', text:'Proses pembelian paling mulus yang pernah saya alami. Datang Sabtu pagi, sore sudah bawa unit pulang. Sales-nya jujur soal harga dan tidak ada biaya tersembunyi sama sekali.' },
+  { img:'https://randomuser.me/api/portraits/women/44.jpg', name:'Sari Wulandari', car:'Honda HR-V 1.5 SE', city:'Semarang', text:'Simulasi kreditnya transparan dan approval hanya 6 jam. Free servis 3 kali benar-benar ditepati. Showroom-nya bersih, mobil displayed lengkap, rasanya seperti di luar negeri.' },
+  { img:'https://randomuser.me/api/portraits/men/85.jpg', name:'Andi Wijaya', car:'Mitsubishi Xpander Ultimate', city:'Bandung', text:'Trade-in mobil lama saya dihargai wajar, lebih tinggi dari dealer lain. Prosesnya fair dan semua dijelaskan di atas kertas. Highly recommended untuk yang mau tukar tambah.' },
+  { img:'https://randomuser.me/api/portraits/women/68.jpg', name:'Dewi Lestari', car:'Toyota Avanza 1.3 G', city:'Surabaya', text:'Order online dari website, barang sampai dalam 3 hari ke rumah. Admin WA-nya responsif, sabar menjawab pertanyaan saya yang banyak. Worth every penny!' },
+  { img:'https://randomuser.me/api/portraits/men/17.jpg', name:'Budi Santoso', car:'Hyundai Creta Prime', city:'Yogyakarta', text:'Unit yang saya terima kondisi mulus seperti baru keluar dari pabrik. Garansi 5 tahun memberi ketenangan luar biasa. Servis pertamanya pun gratis dan ramah.' },
+  { img:'https://randomuser.me/api/portraits/women/65.jpg', name:'Maya Anggraini', car:'Mazda CX-5 Touring', city:'Denpasar', text:'Pelayanan purna jual luar biasa. AC bermasalah di bulan ke-2, langsung ditangani hari itu juga tanpa antri. Bengkel resminya rapi dan mekaniknya bersertifikat.' }
+];
+const tTrack = el('tTrack'), tDots = el('tDots');
+tTrack.innerHTML = TESTIMONIALS.map(t => (
+  '<figure class="t-slide"><i class="fa-solid fa-quote-left t-quote"></i>' +
+  '<div class="t-stars">★★★★★</div>' +
+  '<blockquote class="t-text">“' + t.text + '”</blockquote>' +
+  '<figcaption class="t-foot"><img src="' + t.img + '" alt="' + t.name + '" onerror="this.onerror=null;this.src=\'https://i.pravatar.cc/100?u=' + encodeURIComponent(t.name) + '\'"><span><b>' + t.name + '</b><small>' + t.car + ' · ' + t.city + '</small></span></figcaption>' +
+  '</figure>'
+)).join('');
+tDots.innerHTML = TESTIMONIALS.map((_, i) => '<button class="t-dot' + (i === 0 ? ' active' : '') + '" data-i="' + i + '" aria-label="Testimoni ' + (i + 1) + '"></button>').join('');
+let tIndex = 0, tTimer;
+function goToSlide(i){
+  tIndex = (i + TESTIMONIALS.length) % TESTIMONIALS.length;
+  tTrack.style.transform = 'translateX(-' + tIndex * 100 + '%)';
+  tDots.querySelectorAll('.t-dot').forEach((d, di) => d.classList.toggle('active', di === tIndex));
+}
+function startAutoSlide(){ clearInterval(tTimer); tTimer = setInterval(() => goToSlide(tIndex + 1), 6000); }
+el('tPrev').addEventListener('click', () => { goToSlide(tIndex - 1); startAutoSlide(); });
+el('tNext').addEventListener('click', () => { goToSlide(tIndex + 1); startAutoSlide(); });
+tDots.addEventListener('click', e => { const dot = e.target.closest('.t-dot'); if (dot){ goToSlide(+dot.dataset.i); startAutoSlide(); } });
+el('tViewport').addEventListener('mouseenter', () => clearInterval(tTimer));
+el('tViewport').addEventListener('mouseleave', startAutoSlide);
+
+/* ============ FAQ ACCORDION ============ */
+const FAQS = [
+  { q:'Apakah semua harga di website sudah termasuk OTR?', a:'Ya, seluruh harga yang tercantum di katalog adalah harga OTR (On The Road) wilayah Semarang & sekitarnya — sudah termasuk BBN-KB, STNK, plat nomor, asuransi TLO tahun pertama, dan biaya administrasi. Tidak ada biaya tersembunyi. Untuk wilayah pengiriman luar Jawa Tengah, selisih biaya kirim akan diinformasikan transparan oleh sales Anda.' },
+  { q:'Berapa minimal DP untuk pembelian kredit?', a:'Minimal uang muka mulai dari 10% dari harga OTR, dengan bunga flat 4.9% per tahun dan tenor fleksibel 12–60 bulan. Approval bekerja sama dengan 12 leasing terpercaya (ACC, Mandiri Tunas, FIF, BCA Finance, dll) dan rata-rata hanya membutuhkan 1 hari kerja sejak dokumen lengkap. Gunakan fitur Simulasi Kredit di halaman ini untuk menghitung cicilan Anda.' },
+  { q:'Apakah saya bisa menukar tambah (trade-in) mobil lama?', a:'Tentu. Mobil lama Anda kami terima sebagai uang muka atau potongan harga. Tim appraisal independen akan menilai kondisi kendaraan secara langsung — hasilnya fair, transparan, dan dijelaskan detail di hadapan Anda. Estimasi harga bisa keluar dalam 30 menit setelah pengecekan.' },
+  { q:'Bagaimana cara klaim garansi resmi?', a:'Bawa unit ke bengkel Nusantara Motors terdekat bersama buku garansi dan bukti servis berkala. Klaim garansi mesin & transmisi berlaku hingga 5 tahun atau 100.000 km (mana yang tercapai lebih dulu). Kerusakan akibat pemakaian wajar ditanggung 100% tanpa biaya. Klaim towing darurat 24 jam: 0812-3500-0788.' },
+  { q:'Apakah tersedia pengiriman unit ke luar kota?', a:'Tersedia ke seluruh Indonesia via car carrier atau kapal laut. Proses pengiriman unit baru rata-rata 1–7 hari kerja tergantung kota tujuan. Pengurusan mutasi STNK dan surat jalan antar provinsi kami bantu penuh, gratis untuk pembelian di atas Rp 300 juta.' }
+];
+el('faqAccordion').innerHTML = FAQS.map((item, i) => (
+  '<div class="faq-item' + (i === 0 ? ' open' : '') + '">' +
+    '<button class="faq-q" aria-expanded="' + (i === 0) + '"><span>' + item.q + '</span><i class="fa-solid fa-plus"></i></button>' +
+    '<div class="faq-a"><p>' + item.a + '</p></div>' +
+  '</div>'
+)).join('');
+el('faqAccordion').querySelectorAll('.faq-item').forEach(item => {
+  const btn = item.querySelector('.faq-q');
+  const answer = item.querySelector('.faq-a');
+  const setHeight = () => { answer.style.maxHeight = item.classList.contains('open') ? answer.scrollHeight + 'px' : '0px'; };
+  btn.addEventListener('click', () => {
+    item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(item.classList.contains('open')));
+    setHeight();
+  });
+  setHeight();
+});
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.faq-item.open .faq-a').forEach(a => { a.style.maxHeight = a.scrollHeight + 'px'; });
+});
+
+/* ============ NEWSLETTER ============ */
+el('newsletterForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const input = el('nlEmail');
+  const value = input.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)){ toast('Masukkan alamat email yang valid', 'warning'); input.focus(); return; }
+  this.style.display = 'none';
+  el('nlSuccess').style.display = 'flex';
+  toast('Selamat datang di newsletter Nusantara Motors!', 'success');
+});
+
+/* ============ INIT ============ */
+(function init(){
+  el('footerYear').textContent = new Date().getFullYear();
+  let savedTheme = 'dark';
+  try{ savedTheme = localStorage.getItem('nm_theme') || 'dark'; }catch(e){}
+  applyTheme(savedTheme);
+  try{ state.wishlist = new Set(JSON.parse(localStorage.getItem('nm_wishlist') || '[]')); }catch(e){ state.wishlist = new Set(); }
+  try{ state.cart = JSON.parse(localStorage.getItem('nm_cart') || '[]'); if (!Array.isArray(state.cart)) state.cart = []; }catch(e){ state.cart = []; }
+  renderCart();
+  updateBadges();
+  updateSimulator();
+  startAutoSlide();
+  loadCars();
+})();
+</script>
+</body>
+</html>
