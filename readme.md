@@ -2,39 +2,86 @@
 
 # 🚗 Nusantara Motors
 
-### Temukan Mobil Impian Anda
+### Premium Car Showroom Website
 
-Website showroom dan dealer mobil dengan tampilan modern, katalog kendaraan, simulasi kredit, serta pemesanan yang praktis.
+Website showroom mobil dengan desain modern, katalog kendaraan dinamis, dan berbagai fitur interaktif untuk membantu pengguna menjelajahi pilihan mobil.
 
-<a href="https://ta-btng.vercel.app/">
-  <img src="https://img.shields.io/badge/🌐_Live_Demo-Visit_Website-6C63FF?style=for-the-badge" alt="Live Demo"/>
-</a>
-
-<img src="https://img.shields.io/badge/Status-Development-06B6D4?style=for-the-badge" alt="Status"/>
-<img src="https://img.shields.io/badge/Deployment-Vercel-black?style=for-the-badge&logo=vercel" alt="Vercel"/>
+[🌐 Live Demo](https://ta-btng.vercel.app/)
 
 </div>
 
 ---
 
-## 📖 Tentang Proyek
+## 📖 About The Project
 
-**Nusantara Motors** adalah proyek website showroom dan dealer mobil yang dirancang untuk memberikan pengalaman digital dalam menjelajahi pilihan kendaraan, melihat informasi mobil, menghitung estimasi cicilan, dan melakukan pemesanan.
+Nusantara Motors adalah proyek website showroom mobil yang dikembangkan menggunakan HTML5, CSS3, dan Vanilla JavaScript.
 
-Website ini mengusung desain modern, navigasi yang intuitif, dan tampilan responsif untuk memudahkan pengguna mengakses layanan melalui desktop maupun perangkat mobile.
+Proyek ini berfokus pada desain antarmuka yang modern, pengalaman pengguna yang nyaman, responsivitas, serta integrasi API untuk mengambil dan menampilkan data mobil secara dinamis.
 
-## ✨ Fitur Utama
+## ✨ Features
 
-- 🚘 **Katalog Mobil** — Menjelajahi pilihan mobil berdasarkan merek, model, dan kriteria pencarian.
-- 🔍 **Pencarian & Filter** — Mempermudah pencarian kendaraan sesuai kebutuhan.
-- 💰 **Simulasi Kredit** — Menghitung estimasi cicilan berdasarkan harga mobil, uang muka, bunga, dan tenor.
-- 🛒 **Keranjang Pemesanan** — Mengelola pilihan kendaraan sebelum melanjutkan pemesanan.
-- 📝 **Checkout Pesanan** — Mengisi data pelanggan dan memilih metode pembayaran.
-- 🔄 **Trade-In** — Informasi layanan tukar tambah kendaraan.
-- 🛡️ **Informasi Garansi** — Menampilkan informasi layanan dan garansi kendaraan.
-- 💬 **Kontak Sales** — Memudahkan pengguna menghubungi sales melalui WhatsApp.
-- ❓ **FAQ** — Menyediakan informasi untuk menjawab pertanyaan umum.
-- 📍 **Lokasi Showroom** — Menampilkan informasi lokasi dan jam operasional.
-- 📱 **Responsive Design** — Tampilan yang menyesuaikan berbagai ukuran layar.
+- 🚘 Dynamic Car Catalog
+- 🔍 Search, Filter, and Sorting
+- ❤️ Wishlist
+- 💰 Credit Simulation
+- 🛒 Shopping Cart
+- 📝 Checkout Interface
+- 🔄 Trade-In Information
+- ❓ FAQ Section
+- 📍 Showroom Location and Contact
+- 💬 WhatsApp Contact Button
+- 🌙 Dark and Light Theme
+- 📱 Responsive Layout
+- 🔌 API Integration with Fetch API
 
+## 🛠️ Tech Stack
 
+- **HTML5** — Website structure
+- **CSS3** — Styling, layout, animations, and responsive design
+- **Vanilla JavaScript** — Interactivity, API requests, and DOM manipulation
+- **Fetch API** — Retrieving vehicle data
+- **Vercel** — Website deployment
+
+## 🔌 API Integration
+
+The website retrieves vehicle data from the official API endpoint provided for the BTNG Frontend final project.
+
+```javascript
+const API_URL = "https://api-web.dnccudinus.org/api/mobil";
+
+const response = await fetch(API_URL);
+const data = await response.json();
+```
+
+Retrieved data is processed and rendered dynamically on the website. Fallback demo data is available when the API cannot be accessed.
+
+## 🚀 Live Demo
+
+Visit the deployed website:
+
+https://ta-btng.vercel.app/
+
+## 🎯 Project Goals
+
+- Build a modern and user-friendly car showroom website.
+- Implement dynamic data retrieval using the Fetch API.
+- Practice DOM manipulation with Vanilla JavaScript.
+- Create a responsive interface for desktop and mobile devices.
+- Apply clean and maintainable HTML, CSS, and JavaScript.
+
+## 👨‍💻 Developer
+
+**Aditya Iman Maulana**
+
+Informatics Engineering Student | Aspiring Web Developer
+
+- GitHub: https://github.com/Ditt-Maulana
+- Live Project: https://ta-btng.vercel.app/
+
+---
+
+<div align="center">
+
+**Learn continuously. Build creatively. Innovate fearlessly.** 🚀
+
+</div>
